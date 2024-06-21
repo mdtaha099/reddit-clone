@@ -12,13 +12,16 @@ public class User {
 
     @Column(name = "username")
     private String username;
+
     @Column(name = "password")
     private String password;
 
     @Column(name = "email")
     private String email;
+
     @Column(name = "is_active")
     private boolean isActive;
+
     @Column(name = "authority")
     private String authority;
 
@@ -72,5 +75,16 @@ public class User {
     public void setAuthority(String authority) {
         this.authority = authority;
     }
-    
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", isActive=" + isActive +
+                ", authority='" + authority + '\'' +
+                '}';
+    }
 }
