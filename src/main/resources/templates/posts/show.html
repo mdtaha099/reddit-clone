@@ -8,6 +8,6 @@
     <title> ... </title>
 </head>
 <body>
-    Post is: <span th:text="${post}"></span>
+    <div th:replace="posts/post-comments :: commentThread"></div>
 </body>
 </html>
