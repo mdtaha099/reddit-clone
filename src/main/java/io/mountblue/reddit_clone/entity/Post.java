@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -161,5 +163,13 @@ public class Post {
                 ", updatedAt=" + updatedAt +
                 ", isPost=" + isPost +
                 '}';
+    }
+
+    public void addComment(Post child) {
+        if (children == null) {
+            children = new ArrayList<>();
+        }
+
+        children.add(child);
     }
 }
