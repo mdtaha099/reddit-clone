@@ -2,6 +2,9 @@ package io.mountblue.reddit_clone.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "subreddit")
 public class Subreddit {
@@ -16,6 +19,8 @@ public class Subreddit {
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subreddit")
+    private List<Post> posts;
 
     public Subreddit() {
     }
@@ -42,6 +47,14 @@ public class Subreddit {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     @Override
