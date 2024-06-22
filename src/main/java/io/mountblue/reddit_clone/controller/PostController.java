@@ -5,9 +5,7 @@ import io.mountblue.reddit_clone.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/posts")
@@ -24,5 +22,23 @@ public class PostController {
         Post post = postService.findById(id);
         model.addAttribute("post", post);
         return "posts/show";
+    }
+
+    @PostMapping("/addComment")
+    public String addComment(@RequestParam("postId") int postId,
+                             @RequestParam("content") String content) {
+        Post post = postService.findById(postId);
+
+        content = content.trim();
+        if (content.isEmpty()) {
+            return "redirect:/posts/" + postId;
+        }
+
+        Post comment = new Post();
+        comment.setParent(post);
+        comment.setContent(content);
+        post.addComment(comment);
+        postService.save(post);
+        return "redirect:/posts/" + postId;
     }
 }
