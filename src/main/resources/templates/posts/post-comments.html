@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<body>
+
+  <div th:fragment="commentThread">
+    <ul>
+      <li th:each="comment : ${post}">
+        <span th:text="${comment.content}"></span>
+        <div th:with="post = ${comment.children}" th:include="posts/post-comments.html :: commentThread"></div>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>
