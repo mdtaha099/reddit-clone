@@ -23,6 +23,4 @@ public class PostServiceImpl implements PostService {
     public void save(Post post) {
         postRepository.save(post);
     }
-
-
 }

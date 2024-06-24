@@ -19,6 +19,7 @@ public class SubredditController {
     @RequestMapping("/subreddit/{id}")
     public String getPosts(@PathVariable String id, Model model) {
         List<Post> posts = subredditService.findAllPostById(Integer.parseInt(id));
+        model.addAttribute("subredditId",id);
         model.addAttribute("posts",posts);
         return "subreddit/posts";
     }
