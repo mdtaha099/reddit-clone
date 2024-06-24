@@ -20,6 +20,10 @@ public class SubredditServiceImpl implements SubredditService{
     }
 
     public Subreddit findById(int id) {
-        return subredditRepository.findById(id).get();
+        Subreddit subreddit = subredditRepository.findById(id).get();
+        if (subreddit == null) {
+            throw new RuntimeException("invalid subreddit id");
+        }
+        return subreddit;
     }
 }
