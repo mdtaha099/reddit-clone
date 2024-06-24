@@ -18,4 +18,8 @@ public class SubredditServiceImpl implements SubredditService{
     public List<Post> findAllPostById(int id) {
         return subredditRepository.findAllPostsById(id);
     }
+
+    public Subreddit findById(int id) {
+        return subredditRepository.findById(id).get();
+    }
 }
