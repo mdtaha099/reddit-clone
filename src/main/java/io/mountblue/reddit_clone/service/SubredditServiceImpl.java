@@ -16,10 +16,6 @@ public class SubredditServiceImpl implements SubredditService{
     }
 
     public List<Post> findAllPostById(int id) {
-        Optional<Subreddit> subreddit = subredditRepository.findById(id);
-        if(subreddit.isEmpty()) {
-            throw new RuntimeException("not found");
-        }
-        return subreddit.get().getPosts();
+        return subredditRepository.findAllPostsById(id);
     }
 }
