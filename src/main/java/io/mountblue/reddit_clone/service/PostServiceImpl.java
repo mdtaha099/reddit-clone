@@ -6,6 +6,7 @@ import io.mountblue.reddit_clone.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,5 +52,10 @@ public class PostServiceImpl implements PostService {
         p.setDownvotes(p.getDownvotes() + 1);
         postRepository.save(p);
         return new VoteResponse(p.getId(), p.getUpvotes(), p.getDownvotes());
+    }
+
+    @Override
+    public List<Post> findAll() {
+        return postRepository.findAllByIsPostTrueOrderByUpdatedAtDesc();
     }
 }
