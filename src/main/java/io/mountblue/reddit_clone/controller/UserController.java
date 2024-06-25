@@ -26,6 +26,6 @@ public class UserController {
     @PostMapping("/signup")
     public String signUp(@ModelAttribute User user) throws UserNameAlreadyExistsException {
         userService.Save(user);
-        return "subreddit/posts";
+        return "redirect:/login";
     }
 }
