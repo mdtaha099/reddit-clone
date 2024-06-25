@@ -1,6 +1,6 @@
 package io.mountblue.reddit_clone.controller;
 
-import io.mountblue.reddit_clone.exception.UserNameAlreadyExistsException;
+import io.mountblue.reddit_clone.exception.UserAlreadyExistsException;
 import io.mountblue.reddit_clone.entity.User;
 import io.mountblue.reddit_clone.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class UserController {
         return "user/signup-form";
     }
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute User user) throws UserNameAlreadyExistsException {
+    public String signUp(@ModelAttribute User user) throws UserAlreadyExistsException {
         userService.Save(user);
         return "redirect:/login";
     }
