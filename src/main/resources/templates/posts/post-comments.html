@@ -34,10 +34,11 @@
                     <span th:text="${comment.content}"></span>
                 </div>
 
-
-                <a href="" class="vote-link" vote-type="upvote" th:attr="id=${comment.id}">⬆︎</a>
+                <span th:text="${comment.upvotes}"></span>
+                <a th:href="@{'/upvote' + '/' + ${comment.id}}"> ⬆︎</a>
                 <label>•</label>
-                <a href="" class="vote-link" vote-type="downvote" th:attr="id=${comment.id}">⬇︎</a>
+                <a th:href="@{'/downvote' + '/' + ${comment.id}}"> ⬇︎</a>
+                <span th:text="${comment.downvotes}"></span>
                 <a th:if="${!comment.isPost}"
                    th:href="@{/posts/{postId}(postId=${comment.id})}"
                    class="btn btn-primary btn-sm me-2">
