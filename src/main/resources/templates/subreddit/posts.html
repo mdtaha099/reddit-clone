@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,10 +41,12 @@
 
 <div class="container-fluid bg-light py-3">
     <a th:href="@{/signup}">Sign-up</a>
-    <form class="mb-2" th:action="@{/posts/newPost}">
-        <input type="hidden" name="subredditId" th:value="${subredditId}">
-        <input type="submit" class="btn btn-primary" value="Add Post">
-    </form>
+    <div sec:authorize="hasRole('USER')">
+        <form class="mb-2" th:action="@{/posts/newPost}">
+            <input type="hidden" name="subredditId" th:value="${subredditId}">
+            <input type="submit" class="btn btn-primary" value="Add Post">
+        </form>
+    </div>
 
     <a class="btn btn-info btn-sm" th:href="@{/subreddit/postsOrderByDate/{subredditId}(subredditId=${subredditId})}">Latest</a>
     <a class="btn btn-info btn-sm" th:href="@{/subreddit/postsByUpvotes/{subredditId}(subredditId=${subredditId})}">Top</a>

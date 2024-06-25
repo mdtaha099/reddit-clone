@@ -29,6 +29,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(configurer ->
                         configurer
+                                .requestMatchers("/posts/newPost").hasRole("USER")
                                 .anyRequest().permitAll()
                 )
                 .formLogin(Customizer.withDefaults())
