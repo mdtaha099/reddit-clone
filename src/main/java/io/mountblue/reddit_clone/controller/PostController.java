@@ -66,4 +66,9 @@ public class PostController {
         return "posts/all-posts";
     }
 
+    @GetMapping("/postsByUpvotes")
+    public String getPostsByUpvotes(Model model) {
+        model.addAttribute("posts", postService.findAllOrderByUpvotes());
+        return "posts/all-posts";
+    }
 }

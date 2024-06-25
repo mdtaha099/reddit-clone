@@ -15,4 +15,6 @@ public interface PostService {
     VoteResponse downvote(int id);
 
     List<Post> findAll();
+
+    List<Post> findAllOrderByUpvotes();
 }
