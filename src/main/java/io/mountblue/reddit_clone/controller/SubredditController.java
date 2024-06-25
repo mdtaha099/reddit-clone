@@ -42,4 +42,5 @@ public class SubredditController {
         model.addAttribute("posts",posts);
         return "subreddit/posts";
     }
+
 }
