@@ -40,6 +40,7 @@
 <body class="bg-light">
 
 <div class="container-fluid bg-light py-3">
+    <a th:href="@{/signup}">Sign-up</a>
     <form class="mb-2" th:action="@{/posts/newPost}">
         <input type="hidden" name="subredditId" th:value="${subredditId}">
         <input type="submit" class="btn btn-primary" value="Add Post">
