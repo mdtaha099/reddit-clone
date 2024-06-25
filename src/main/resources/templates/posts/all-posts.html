@@ -161,24 +161,31 @@
         <div th:each="post: ${posts}" class="col">
             <div class="card shadow">
                 <div class="card-body">
+                    <p th:if="${post.getUser().username}" class="username mb-2"><span
+                            th:text="${post.getUser().username}"></span></p>
                     <h5 class="card-title fw-bold mb-3" th:text="${post.title}"></h5>
 
-                    <p class="card-text text-muted mb-3" th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}"></p>
-
-                    <p th:if="${post.getUser().username}" class="username mb-2"><span th:text="${post.getUser().username}"></span></p>
                     <hr>
 
                     <a th:href="@{/posts/{postId}(postId=${post.id})}" class="btn btn-primary btn-sm me-2">View Post</a>
                 </div>
+
                 <div class="card-footer">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <span class="text-muted me-2" th:text="${post.upvotes}"></span>
+                            <span class="text-muted " th:text="${post.upvotes}"></span>
+                            <span class="text-muted">⇅</span>
+                            <span class="text-muted me-2" th:text="${post.downvotes}"></span>
+
                             <span class="text-muted">·</span>
                             <span class="text-muted ms-2">Comment</span>
+                            <span class="text-muted ms-2" th:text="${post.children.size()}"></span>
                         </div>
+
                         <div>
-                            <span class="text-muted">Posted 2 hours ago</span>
+                            <span class="text-muted"
+                                  th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -57,6 +57,10 @@
 <div class="container mt-1">
     <div th:replace="posts/post-comments :: commentThread"></div>
 
+    <span class="text-muted " th:text="${post.upvotes}"></span>
+    <span class="text-muted">⇅</span>
+    <span class="text-muted me-2" th:text="${post.downvotes}"></span>
+
     <form method="post" th:action="@{/posts/addComment(postId=${post.id})}" class="mb-4">
         <div class="mb-3">
             <input type="text" class="form-control" name="content" placeholder="Your Comment" required>

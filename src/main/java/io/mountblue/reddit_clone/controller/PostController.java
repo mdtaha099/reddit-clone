@@ -34,6 +34,7 @@ public class PostController {
         postService.save(post);
         return "posts/show";
     }
+
     @GetMapping("/{id}")
     public String getPost(@PathVariable int id, Model model) {
         Post post = postService.findById(id);
@@ -58,4 +59,11 @@ public class PostController {
         postService.save(post);
         return "redirect:/posts/" + postId;
     }
+
+    @GetMapping("/allposts")
+    public String getAllPosts(Model model) {
+        model.addAttribute("posts", postService.findAll());
+        return "posts/all-posts";
+    }
+
 }
