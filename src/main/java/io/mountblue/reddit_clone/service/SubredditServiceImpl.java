@@ -22,4 +22,14 @@ public class SubredditServiceImpl implements SubredditService{
     public Subreddit findById(int id) {
         return subredditRepository.findById(id).orElseThrow();
     }
+
+    @Override
+    public List<Post> findAllPostByIdOrderByUpvotes(int id) {
+        return subredditRepository.findAllPostsByIdOrderByUpvotes(id);
+    }
+
+    @Override
+    public List<Post> findAllPostByIdOrderByUpdatedAt(int id) {
+        return subredditRepository.findAllPostsByIdOrderByUpdatedAt(id);
+    }
 }

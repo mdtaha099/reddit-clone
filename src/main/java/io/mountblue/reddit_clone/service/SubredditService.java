@@ -8,4 +8,8 @@ import java.util.List;
 public interface SubredditService {
     List<Post> findAllPostById(int id);
     Subreddit findById(int id);
+
+    List<Post> findAllPostByIdOrderByUpvotes(int id);
+
+    List<Post> findAllPostByIdOrderByUpdatedAt(int id);
 }
