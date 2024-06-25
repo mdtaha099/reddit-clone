@@ -67,46 +67,5 @@
         </div>
     </form>
 </div>
-
-
-
 </body>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-     const voteLinks = document.querySelectorAll('.vote-link');
-
-     voteLinks.forEach(link => {
-         link.addEventListener('click', (event) => {
-             event.preventDefault();
-             const postId = event.target.getAttribute('id');
-             const voteType = event.target.getAttribute('vote-type');
-             sendVoteRequest(postId, voteType, event.target);
-         });
-     });
- });
-
- function sendVoteRequest(postId, voteType, element) {
-     const xhr = new XMLHttpRequest();
-     xhr.open('GET', `/${voteType}/${postId}`);
-     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-
-     xhr.onreadystatechange = () => {
-         if (xhr.readyState === XMLHttpRequest.DONE) {
-             if (xhr.status === 200) {
-                 const response = JSON.parse(xhr.responseText);
-                 updateVoteCount(element, response);
-             } else {
-                 console.error('Error voting on the post');
-             }
-         }
-     };
-
-     xhr.send();
- }
-
- function updateVoteCount(element, response) {
-     // element.textContent = 'upvoted';
-     console.log(element, response);
- }
-</script>
 </html>
