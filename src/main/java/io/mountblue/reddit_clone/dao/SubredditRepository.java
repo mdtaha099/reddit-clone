@@ -13,4 +13,19 @@ public interface SubredditRepository extends JpaRepository<Subreddit,Integer> {
             "WHERE p.isPost = true " +
             "AND p.subreddit.id = :id")
     List<Post> findAllPostsById(int id);
+
+    @Query("FROM Post p " +
+            "INNER JOIN p.subreddit s " +
+            "WHERE p.isPost = true " +
+            "AND p.subreddit.id = :id  " +
+            "order by p.upvotes DESC ")
+    List<Post> findAllPostsByIdOrderByUpvotes(int id);
+
+    @Query("FROM Post p " +
+            "INNER JOIN p.subreddit s " +
+            "WHERE p.isPost = true " +
+            "AND p.subreddit.id = :id  " +
+            "order by p.updatedAt DESC ")
+    List<Post> findAllPostsByIdOrderByUpdatedAt(int id);
+
 }
