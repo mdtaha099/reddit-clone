@@ -29,7 +29,7 @@ public class SubredditController {
 
     @GetMapping("/postsOrderByDate/{id}")
     public String getPostsOrderByDate(@PathVariable String id, Model model) {
-        List<Post> posts = subredditService.findAllPostByIdOrderByUpvotes(Integer.parseInt(id));
+        List<Post> posts = subredditService.findAllPostByIdOrderByUpdatedAt(Integer.parseInt(id));
         model.addAttribute("subredditId",id);
         model.addAttribute("posts",posts);
         return "subreddit/posts";
@@ -37,7 +37,7 @@ public class SubredditController {
 
     @GetMapping("/postsByUpvotes/{id}")
     public String getPostsOrderByUpvotes(@PathVariable String id, Model model) {
-        List<Post> posts = subredditService.findAllPostByIdOrderByUpdatedAt(Integer.parseInt(id));
+        List<Post> posts = subredditService.findAllPostByIdOrderByUpvotes(Integer.parseInt(id));
         model.addAttribute("subredditId",id);
         model.addAttribute("posts",posts);
         return "subreddit/posts";
