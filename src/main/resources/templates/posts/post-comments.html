@@ -15,15 +15,35 @@
     <ul class="comment-list list-unstyled">
         <li th:each="comment : ${post}" class="comment mb-2">
             <div class="content">
-                <a href="" class="vote-link" vote-type="upvote" th:attr="id=${comment.id}">upvote</a>
-                <a href="" class="vote-link" vote-type="downvote" th:attr="id=${comment.id}">downvote</a>
+
                 <div th:each="name: ${comment.user}">
-                    <span th:text="${name.username}" class="fw-bold"></span>
+
+                    <span  th:text="${name.username}"></span>
                     <label>•</label>
                     <span class="text-muted small mt-1"
-                          th:text="${#temporals.format(comment.createdAt, 'dd MMM yyyy')}"></span>
+                          th:text="${#temporals.format(comment.updatedAt, 'dd MMM yyyy')}">
+                    </span>
+
                 </div>
-                <span th:text="${comment.content}"></span>
+                <div th:if="${comment.isPost}">
+                    <h2 th:text="${comment.title}"></h2>
+                    <h4 class="fw-bold" th:text="${comment.content}"></h4>
+                </div>
+
+                <div th:if="${!comment.isPost}">
+                    <span th:text="${comment.content}"></span>
+                </div>
+
+
+                <a href="" class="vote-link" vote-type="upvote" th:attr="id=${comment.id}">⬆︎</a>
+                <label>•</label>
+                <a href="" class="vote-link" vote-type="downvote" th:attr="id=${comment.id}">⬇︎</a>
+                <a th:if="${!comment.isPost}"
+                   th:href="@{/posts/{postId}(postId=${comment.id})}"
+                   class="btn btn-primary btn-sm me-2">
+                    Reply
+                </a>
+
             </div>
             <div th:with="post = ${comment.children}" th:include="posts/post-comments.html :: commentThread"></div>
         </li>
