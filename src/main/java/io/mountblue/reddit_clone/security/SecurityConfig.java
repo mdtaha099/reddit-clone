@@ -32,6 +32,7 @@ public class SecurityConfig {
                                 .requestMatchers("/subreddit/join").hasRole("USER")
                                 .requestMatchers("/posts/newPost").hasRole("USER")
                                 .requestMatchers("/posts/addComment").hasRole("USER")
+                                .requestMatchers("/profile").hasRole("USER")
                                 .anyRequest().permitAll()
                 )
                 .formLogin(Customizer.withDefaults())

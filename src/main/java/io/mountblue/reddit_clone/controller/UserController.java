@@ -1,13 +1,15 @@
 package io.mountblue.reddit_clone.controller;
 
-import io.mountblue.reddit_clone.exception.UserAlreadyExistsException;
 import io.mountblue.reddit_clone.entity.User;
+import io.mountblue.reddit_clone.exception.UserAlreadyExistsException;
 import io.mountblue.reddit_clone.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -20,12 +22,20 @@ public class UserController {
     @GetMapping("/signup")
     public String getSignUpForm(Model model) {
         User user = new User();
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "user/signup-form";
     }
+
     @PostMapping("/signup")
     public String signUp(@ModelAttribute User user) throws UserAlreadyExistsException {
         userService.Save(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model, Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("subreddits", user.getSubreddits());
+        return "user/profile";
     }
 }
