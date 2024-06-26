@@ -1,9 +1,12 @@
 package io.mountblue.reddit_clone.service;
 
 import io.mountblue.reddit_clone.dao.PostRepository;
+import io.mountblue.reddit_clone.dao.UserRepository;
 import io.mountblue.reddit_clone.entity.Post;
+import io.mountblue.reddit_clone.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +14,12 @@ import java.util.Optional;
 @Service
 public class PostServiceImpl implements PostService {
     private PostRepository postRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostServiceImpl(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -35,6 +40,7 @@ public class PostServiceImpl implements PostService {
         }
         Post p = op.get();
         p.setUpvotes(p.getUpvotes() + 1);
+        p.getUser().incrementKarma();
         postRepository.save(p);
         return p;
     }

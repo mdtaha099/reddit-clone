@@ -111,4 +111,8 @@ public class User {
                 ", authority='" + authority + '\'' +
                 '}';
     }
+
+    public void incrementKarma() {
+        karma++;
+    }
 }
