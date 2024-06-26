@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/subreddit")
@@ -56,6 +58,10 @@ public class SubredditController {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(loggedInUser.getName());
         Subreddit subreddit = subredditService.findById(subredditId);
+        Set<User> usersBySubreddit = new HashSet<>(subreddit.getUsers());
+        if(usersBySubreddit.contains(user)) {
+            return "redirect:/subreddit/" + subredditId;
+        }
         subreddit.addUser(user);
         subredditService.save(subreddit);
         return "redirect:/subreddit/" + subredditId;
