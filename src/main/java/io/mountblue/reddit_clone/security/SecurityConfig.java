@@ -29,7 +29,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(configurer ->
                         configurer
-                                .requestMatchers("/subreddit/join").hasRole("USER")
+                                .requestMatchers("/subreddit/join","/newSubreddit").hasRole("USER")
                                 .requestMatchers("/posts/newPost").hasRole("USER")
                                 .requestMatchers("/posts/addComment").hasRole("USER")
                                 .requestMatchers("/profile").hasRole("USER")

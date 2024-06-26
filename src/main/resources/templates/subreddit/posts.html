@@ -40,10 +40,8 @@
 <body class="bg-light">
 
 <div class="container-fluid bg-light py-3">
-    <form th:action="@{/subreddit/join}">
-        <input type="hidden" name="subredditId" th:value="${subredditId}">
-        <input type="submit" value="join">
-    </form>
+    <a th:href="@{/newSubreddit}">create new subreddit</a>
+    <a th:href="@{'/r/'+${name}+ '/join'}">Join</a>
     <a th:href="@{/signup}">Sign-up</a>
     <div sec:authorize="hasRole('USER')">
         <form class="mb-2" th:action="@{/posts/newPost}">
@@ -52,8 +50,8 @@
         </form>
     </div>
 
-    <a class="btn btn-info btn-sm" th:href="@{/subreddit/postsOrderByDate/{subredditId}(subredditId=${subredditId})}">Latest</a>
-    <a class="btn btn-info btn-sm" th:href="@{/subreddit/postsByUpvotes/{subredditId}(subredditId=${subredditId})}">Top</a>
+    <a class="btn btn-info btn-sm" th:href="@{'/r/'+${name}+'/new'}">Latest</a>
+    <a class="btn btn-info btn-sm" th:href="@{'/r/'+${name}+'/top'}">Top</a>
 
     <div class="row row-cols-1 row-cols-md-2 mt-2 g-4">
         <div th:each="post: ${posts}" class="col">

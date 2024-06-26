@@ -28,4 +28,5 @@ public interface SubredditRepository extends JpaRepository<Subreddit,Integer> {
             "order by p.updatedAt DESC ")
     List<Post> findAllPostsByIdOrderByUpdatedAt(int id);
 
+    Subreddit findByName(String name);
 }
