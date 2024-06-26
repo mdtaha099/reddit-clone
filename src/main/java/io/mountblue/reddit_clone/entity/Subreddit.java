@@ -18,9 +18,14 @@ public class Subreddit {
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
-    private User user;
+    private User author;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subreddit")
     private List<Post> posts;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_subreddit",
+            joinColumns={@JoinColumn(name = "subreddit_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    private List<User> users;
 
     public Subreddit() {
     }
@@ -41,12 +46,12 @@ public class Subreddit {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public List<Post> getPosts() {
@@ -57,12 +62,26 @@ public class Subreddit {
         this.posts = posts;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+    public void addUser(User user) {
+        if(users == null) {
+            users = new ArrayList<>();
+        }
+        users.add(user);
+    }
+
     @Override
     public String toString() {
         return "Subreddit{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", user=" + user +
+                ", user=" + author +
                 '}';
     }
 }
