@@ -21,7 +21,7 @@ public class Subreddit {
     private User author;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subreddit")
     private List<Post> posts;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(name = "user_subreddit",
             joinColumns={@JoinColumn(name = "subreddit_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
