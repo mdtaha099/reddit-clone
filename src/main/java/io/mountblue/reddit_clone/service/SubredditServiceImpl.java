@@ -3,6 +3,7 @@ package io.mountblue.reddit_clone.service;
 import io.mountblue.reddit_clone.dao.SubredditRepository;
 import io.mountblue.reddit_clone.entity.Post;
 import io.mountblue.reddit_clone.entity.Subreddit;
+import io.mountblue.reddit_clone.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +32,9 @@ public class SubredditServiceImpl implements SubredditService{
     @Override
     public List<Post> findAllPostByIdOrderByUpdatedAt(int id) {
         return subredditRepository.findAllPostsByIdOrderByUpdatedAt(id);
+    }
+    @Override
+    public void save(Subreddit subreddit) {
+        subredditRepository.save(subreddit);
     }
 }

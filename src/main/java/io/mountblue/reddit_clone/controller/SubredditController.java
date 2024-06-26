@@ -1,12 +1,20 @@
 package io.mountblue.reddit_clone.controller;
 
+import io.mountblue.reddit_clone.dao.SubredditRepository;
 import io.mountblue.reddit_clone.entity.Post;
+import io.mountblue.reddit_clone.entity.Subreddit;
+import io.mountblue.reddit_clone.entity.User;
 import io.mountblue.reddit_clone.service.SubredditService;
+import io.mountblue.reddit_clone.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -14,9 +22,10 @@ import java.util.List;
 @RequestMapping("/subreddit")
 public class SubredditController {
     private SubredditService subredditService;
-
-    public SubredditController(SubredditService subredditService) {
+    private UserService userService;
+    public SubredditController(SubredditService subredditService,UserService userService) {
         this.subredditService = subredditService;
+        this.userService = userService;
     }
 
     @RequestMapping("/{id}")
@@ -41,6 +50,15 @@ public class SubredditController {
         model.addAttribute("subredditId",id);
         model.addAttribute("posts",posts);
         return "subreddit/posts";
+    }
+    @GetMapping("/join")
+    public String joinSubreddit(@RequestParam int subredditId) {
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(loggedInUser.getName());
+        Subreddit subreddit = subredditService.findById(subredditId);
+        subreddit.addUser(user);
+        subredditService.save(subreddit);
+        return "redirect:/subreddit/" + subredditId;
     }
 
 }
