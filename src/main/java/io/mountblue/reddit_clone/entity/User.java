@@ -2,7 +2,6 @@ package io.mountblue.reddit_clone.entity;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,7 +26,11 @@ public class User {
 
     @Column(name = "authority")
     private String authority;
-    @ManyToMany(mappedBy = "users",cascade = CascadeType.ALL)
+
+    @Column(name = "karma")
+    private int karma;
+
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private List<Subreddit> subreddits;
 
     public User() {
@@ -87,6 +90,14 @@ public class User {
 
     public void setSubreddits(List<Subreddit> subreddits) {
         this.subreddits = subreddits;
+    }
+
+    public int getKarma() {
+        return karma;
+    }
+
+    public void setKarma(int karma) {
+        this.karma = karma;
     }
 
     @Override

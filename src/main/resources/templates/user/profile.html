@@ -9,9 +9,11 @@
 </head>
 <body>
 
+karma: <span th:text="${user.karma}"></span>
+
 <h3>You have joined the following subreddits:</h3>
 <ul>
-    <li th:each="subreddit : ${subreddits}" th:text="${subreddit.name}"></li>
+    <li th:each="subreddit : ${user.subreddits}" th:text="${subreddit.name}"></li>
 </ul>
 
 </body>
