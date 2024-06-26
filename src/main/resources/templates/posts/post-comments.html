@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -18,7 +18,7 @@
 
                 <div th:each="name: ${comment.user}">
 
-                    <span  th:text="${name.username}"></span>
+                    <span th:text="${name.username}"></span>
                     <label>•</label>
                     <span class="text-muted small mt-1"
                           th:text="${#temporals.format(comment.updatedAt, 'dd MMM yyyy')}">
@@ -35,16 +35,21 @@
                 </div>
 
                 <span th:text="${comment.upvotes}"></span>
-                <a th:href="@{'/upvote' + '/' + ${comment.id}}"> ⬆︎</a>
+                <span sec:authorize="hasRole('USER')">
+                    <a th:href="@{'/upvote' + '/' + ${comment.id}}"> ⬆︎</a>
+                </span>
                 <label>•</label>
-                <a th:href="@{'/downvote' + '/' + ${comment.id}}"> ⬇︎</a>
+                <span sec:authorize="hasRole('USER')">
+                    <a th:href="@{'/downvote' + '/' + ${comment.id}}"> ⬇︎</a>
+                </span>
                 <span th:text="${comment.downvotes}"></span>
-                <a th:if="${!comment.isPost}"
-                   th:href="@{/posts/{postId}(postId=${comment.id})}"
-                   class="btn btn-primary btn-sm me-2">
-                    Reply
-                </a>
-
+                <div sec:authorize="hasRole('USER')">
+                    <a th:if="${!comment.isPost}"
+                       th:href="@{/posts/{postId}(postId=${comment.id})}"
+                       class="btn btn-primary btn-sm me-2">
+                        Reply
+                    </a>
+                </div>
             </div>
             <div th:with="post = ${comment.children}" th:include="posts/post-comments.html :: commentThread"></div>
         </li>

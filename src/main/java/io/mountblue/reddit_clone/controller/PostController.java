@@ -59,7 +59,8 @@ public class PostController {
 
     @PostMapping("/addComment")
     public String addComment(@RequestParam("postId") int postId,
-                             @RequestParam("content") String content) {
+                             @RequestParam("content") String content,
+                             Principal principal) {
         Post post = postService.findById(postId);
 
         content = content.trim();
@@ -70,6 +71,10 @@ public class PostController {
         Post comment = new Post();
         comment.setParent(post);
         comment.setContent(content);
+        User user = userService.findByUsername(principal.getName());
+        comment.setUser(user);
+        comment.setCreatedAt(LocalDateTime.now());
+        comment.setUpdatedAt(LocalDateTime.now());
         post.addComment(comment);
         postService.save(post);
         return "redirect:/posts/" + postId;

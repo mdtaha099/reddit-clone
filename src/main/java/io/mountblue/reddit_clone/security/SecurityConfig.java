@@ -30,6 +30,7 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers("/posts/newPost").hasRole("USER")
+                                .requestMatchers("/posts/addComment").hasRole("USER")
                                 .anyRequest().permitAll()
                 )
                 .formLogin(Customizer.withDefaults())
