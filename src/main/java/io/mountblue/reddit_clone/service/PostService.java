@@ -7,7 +7,7 @@ import java.util.List;
 public interface PostService {
     Post findById(int id);
 
-    void save(Post post);
+    Post save(Post post);
 
     Post upvote(int id);
 
