@@ -40,8 +40,6 @@ public class PostController {
     public String addNewPost(@ModelAttribute("post") Post post,
                              @RequestParam("subredditId") int subredditId,
                              Principal principal) {
-        System.out.println(subredditId);
-        System.out.println(post);
         User user = userService.findByUsername(principal.getName());
         post.setSubreddit(subredditService.findById(subredditId));
         post.setPost(true);
