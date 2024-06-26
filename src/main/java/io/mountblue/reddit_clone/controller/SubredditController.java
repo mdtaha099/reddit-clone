@@ -11,17 +11,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/subreddit")
 public class SubredditController {
     private SubredditService subredditService;
     private UserService userService;
@@ -29,42 +25,64 @@ public class SubredditController {
         this.subredditService = subredditService;
         this.userService = userService;
     }
-
-    @RequestMapping("/{id}")
-    public String getPosts(@PathVariable String id, Model model) {
-        List<Post> posts = subredditService.findAllPostById(Integer.parseInt(id));
-        model.addAttribute("subredditId",id);
-        model.addAttribute("posts",posts);
-        return "subreddit/posts";
+    @GetMapping("/newSubreddit")
+    public String newSubreddit(Model model) {
+        Subreddit subreddit = new Subreddit();
+        model.addAttribute("subreddit",subreddit);
+        return "subreddit/new-subreddit";
     }
-
-    @GetMapping("/postsOrderByDate/{id}")
-    public String getPostsOrderByDate(@PathVariable String id, Model model) {
-        List<Post> posts = subredditService.findAllPostByIdOrderByUpdatedAt(Integer.parseInt(id));
-        model.addAttribute("subredditId",id);
-        model.addAttribute("posts",posts);
-        return "subreddit/posts";
-    }
-
-    @GetMapping("/postsByUpvotes/{id}")
-    public String getPostsOrderByUpvotes(@PathVariable String id, Model model) {
-        List<Post> posts = subredditService.findAllPostByIdOrderByUpvotes(Integer.parseInt(id));
-        model.addAttribute("subredditId",id);
-        model.addAttribute("posts",posts);
-        return "subreddit/posts";
-    }
-    @GetMapping("/join")
-    public String joinSubreddit(@RequestParam int subredditId) {
+    @PostMapping("/newSubreddit")
+    public String saveSubreddit(@ModelAttribute Subreddit subreddit){
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(loggedInUser.getName());
-        Subreddit subreddit = subredditService.findById(subredditId);
+        subreddit.setAuthor(user);
+        subredditService.save(subreddit);
+        return "redirect:r/"+subreddit.getName();
+    }
+    @RequestMapping("r/{name}")
+    public String getPosts(@PathVariable String name, Model model) {
+        Subreddit subreddit = subredditService.findByName(name);
+        List<Post> posts = subredditService.findAllPostById(subreddit.getId());
+        model.addAttribute("subredditId",subreddit.getId());
+        model.addAttribute("name",name);
+        model.addAttribute("posts",posts);
+        return "subreddit/posts";
+    }
+
+    @GetMapping("r/{name}/new")
+    public String getPostsOrderByDate(@PathVariable String name, Model model) {
+        Subreddit subreddit = subredditService.findByName(name);
+        List<Post> posts = subredditService.findAllPostByIdOrderByUpdatedAt(subreddit.getId());
+        model.addAttribute("subredditId",subreddit.getId());
+        model.addAttribute("posts",posts);
+        return "subreddit/posts";
+    }
+
+    @GetMapping("r/{name}/top")
+    public String getPostsOrderByUpvotes(@PathVariable String name, Model model) {
+        Subreddit subreddit = subredditService.findByName(name);
+        int id = subreddit.getId();
+        List<Post> posts = subredditService.findAllPostByIdOrderByUpvotes(id);
+        model.addAttribute("subredditId",id);
+        model.addAttribute("posts",posts);
+        return "subreddit/posts";
+    }
+    @GetMapping("r/{name}/join")
+    public String joinSubreddit(@PathVariable String name,Model model) {
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(loggedInUser.getName());
+        Subreddit subreddit = subredditService.findByName(name);
         Set<User> usersBySubreddit = new HashSet<>(subreddit.getUsers());
+        List<Post> posts = subredditService.findAllPostById(subreddit.getId());
+        int subredditId = subreddit.getId();
+        model.addAttribute("subredditId",subredditId);
+        model.addAttribute("posts",posts);
         if(usersBySubreddit.contains(user)) {
-            return "redirect:/subreddit/" + subredditId;
+            return "subreddit/posts";
         }
         subreddit.addUser(user);
         subredditService.save(subreddit);
-        return "redirect:/subreddit/" + subredditId;
+        return "subreddit/posts";
     }
 
 }

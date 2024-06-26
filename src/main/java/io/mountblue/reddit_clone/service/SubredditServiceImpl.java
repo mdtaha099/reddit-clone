@@ -37,4 +37,9 @@ public class SubredditServiceImpl implements SubredditService{
     public void save(Subreddit subreddit) {
         subredditRepository.save(subreddit);
     }
+
+    @Override
+    public Subreddit findByName(String name) {
+        return subredditRepository.findByName(name);
+    }
 }

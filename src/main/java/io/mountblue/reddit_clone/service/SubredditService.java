@@ -14,4 +14,6 @@ public interface SubredditService {
 
     List<Post> findAllPostByIdOrderByUpdatedAt(int id);
     void save(Subreddit subreddit);
+
+    Subreddit findByName(String name);
 }

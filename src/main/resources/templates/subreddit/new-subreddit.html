@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create-new-subreddit</title>
+</head>
+<body>
+    <form th:action="@{/newSubreddit}" th:object="${subreddit}" method="POST">
+        <input type="text" name="name" placeholder="subreddit name"/>
+        <input type="submit" value="create-new-subreddit"/>
+    </form>
+</body>
+</html>
