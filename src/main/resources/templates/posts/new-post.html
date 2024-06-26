@@ -1,15 +1,104 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Add-post</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <form th:object="${post}" th:action="@{/posts/newPost}" method="POST">-->
+<!--        <input type="hidden" name="subredditId" th:value="${subredditId}">-->
+<!--        <input type="text" name="title">Title-->
+<!--        <input type="text" name="content">Content-->
+<!--        <input type="submit" value="add a new post">-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add-post</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+    <style>
+        body {
+            font-family: "Monaco", sans-serif;
+            background-color: #f6f7f8;
+            margin: 0;
+            padding: 20px;
+        }
+        .div-post {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80vw;
+            margin: 0 auto;
+        }
+        .title {
+            width: calc(100%);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        .content{
+            width: calc(100%);
+            height: 400px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: large;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+
+        }
+        input[type="submit"] {
+            width: calc(100%);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: rgba(188, 1, 1, 0);
+            color: #FF5700;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        input[type="submit"]:hover {
+            background-color: #FF4500;
+            color: white;
+        }
+        input[type="text"]:focus,
+        .content:focus
+        {
+            outline: none;
+            border-color: #FF4500;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
 </head>
 <body>
+
+<div class="div-post">
+    <h1>Write a post</h1>
     <form th:object="${post}" th:action="@{/posts/newPost}" method="POST">
-        <input type="hidden" name="subredditId" th:value="${subredditId}">
-        <input type="text" name="title">Title
-        <input type="text" name="content">Content
-        <input type="submit" value="add a new post">
+        <input type="hidden" name="subredditId" value="${subredditId}">
+
+        <input type="text" class="title" name="title" placeholder="Title" required />
+        <textarea class="content" name="content" rows="5" placeholder="Content.." required></textarea>
+
+        <input type="submit" value="Add a New Post">
     </form>
+</div>
+
 </body>
 </html>
