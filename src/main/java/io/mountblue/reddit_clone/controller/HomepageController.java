@@ -22,6 +22,7 @@ public class HomepageController {
     PostService postService;
     UserService userService;
     SubredditService subredditService;
+
     public HomepageController(PostService postService, UserService userService, SubredditService subredditService) {
         this.postService = postService;
         this.userService = userService;
@@ -31,49 +32,25 @@ public class HomepageController {
     @GetMapping("/")
     public String getAllPosts(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication.getName()+"  shbhcbsihbc");
-        List<Post> posts = new ArrayList<>();
-        if(authentication.getName().equals("anonymousUser")) {
-            model.addAttribute("posts", postService.findAll());
-        }
-        else{
+        if (authentication.getName().equals("anonymousUser")) {
+            model.addAttribute("posts", postService.findLatestPosts());
+        } else {
             Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
             User user = userService.findByUsername(loggedInUser.getName());
-            for(Subreddit subreddit: user.getSubreddits()) {
-                posts.addAll(subredditService.findAllPostByIdOrderByUpdatedAt(subreddit.getId()));
-            }
-            if(posts.isEmpty()) {
-                model.addAttribute("posts", postService.findAll());
-            }
-            else{
-                model.addAttribute("posts", posts);
-            }
+            model.addAttribute("posts", postService.findLatestPosts(user));
         }
-//        System.out.println("HOmepageController");
         return "homepage";
     }
 
     @GetMapping("/byUpvotes")
     public String getAllPostsByUpvotes(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication.getName()+"  shbhcbsihbc");
-        List<Post> posts = new ArrayList<>();
-        if(authentication.getName().equals("anonymousUser")) {
-            model.addAttribute("posts", postService.findAll());
-        }
-        else{
+        if (authentication.getName().equals("anonymousUser")) {
+            model.addAttribute("posts", postService.findTopPosts());
+        } else {
             Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
             User user = userService.findByUsername(loggedInUser.getName());
-            for(Subreddit subreddit: user.getSubreddits()) {
-                posts.addAll(subredditService.findAllPostByIdOrderByUpvotes(subreddit.getId()));
-            }
-            System.out.println(posts.size()+"Yessssss");
-            if(posts.isEmpty()) {
-                model.addAttribute("posts", postService.findAllOrderByUpvotes());
-            }
-            else{
-                model.addAttribute("posts", posts);
-            }
+            model.addAttribute("posts", postService.findTopPosts(user));
         }
         return "homepage";
     }
