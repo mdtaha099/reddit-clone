@@ -66,4 +66,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> findAllOrderByUpvotes() {
         return postRepository.findAllByIsPostTrueOrderByUpvotesDesc();
     }
+
+    @Override
+    public List<Post> findAllByIsPostTrueAndContentContainingOrTitleContaining(String content, String title) {
+        return postRepository.findAllByIsPostTrueAndContentContainingOrTitleContaining(content,title);
+    }
 }

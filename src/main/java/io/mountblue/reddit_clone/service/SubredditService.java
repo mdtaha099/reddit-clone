@@ -16,4 +16,6 @@ public interface SubredditService {
     void save(Subreddit subreddit);
 
     Subreddit findByName(String name);
+
+    List<Post> findAllPostBySubredditContaining(int id, String content, String title);
 }

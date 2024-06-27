@@ -1,5 +1,6 @@
 package io.mountblue.reddit_clone.controller;
 
+import io.mountblue.reddit_clone.dao.PostRepository;
 import io.mountblue.reddit_clone.entity.Post;
 import io.mountblue.reddit_clone.entity.User;
 import io.mountblue.reddit_clone.service.PostService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("/posts")
@@ -20,7 +22,6 @@ public class PostController {
     private final PostService postService;
     private SubredditService subredditService;
     private UserService userService;
-
     @Autowired
     public PostController(PostService postService, SubredditService subredditService, UserService userService) {
         this.postService = postService;

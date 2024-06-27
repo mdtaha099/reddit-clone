@@ -29,4 +29,10 @@ public interface SubredditRepository extends JpaRepository<Subreddit,Integer> {
     List<Post> findAllPostsByIdOrderByUpdatedAt(int id);
 
     Subreddit findByName(String name);
+    @Query("FROM Post p " +
+            "INNER JOIN p.subreddit s " +
+            "WHERE p.isPost = true " +
+            "AND p.subreddit.id = :id "+
+            "AND (p.content LIKE %:content% OR p.title LIKE %:title%) ")
+    List<Post> findAllPostBySubredditContaining(int id,String content,String title);
 }
