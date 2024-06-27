@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,14 +71,14 @@
     </style>
 </head>
 <body>
-
 <div class="div-post">
     <h1>Write a post</h1>
-    <form th:object="${post}" th:action="@{/posts/newPost}" method="POST">
+    <form th:object="${post}" th:action="@{/posts/newPost}" enctype="multipart/form-data" method="POST">
         <input type="hidden" name="subredditId" th:value="${subredditId}">
 
         <input type="text" class="title" name="title" placeholder="Title" required />
         <textarea class="content" name="content" rows="5" placeholder="Content.." required></textarea>
+        <input type="file" name="image" accept="image/*" class="form-control-file">
 
         <input type="submit" value="Add a New Post">
     </form>

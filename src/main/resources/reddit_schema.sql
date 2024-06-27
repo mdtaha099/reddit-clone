@@ -9,6 +9,7 @@ CREATE TABLE user (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     is_active BOOLEAN DEFAULT TRUE,
+    karma INT DEFAULT 0,
     authority VARCHAR(50)
 );
 
@@ -26,6 +27,7 @@ CREATE TABLE post (
     user_id INT,
     parent_id INT,
     subreddit_id INT,
+    image_id INT,
     upvotes INT DEFAULT 0,
     downvotes INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -34,6 +36,7 @@ CREATE TABLE post (
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (parent_id) REFERENCES post(id),
     FOREIGN KEY (subreddit_id) REFERENCES subreddit(id)
+    FOREIGN KEY (image_id) REFERENCES image(id)
 );
 
 CREATE TABLE user_subreddit (
@@ -44,12 +47,8 @@ CREATE TABLE user_subreddit (
     FOREIGN KEY (subreddit_id) REFERENCES subreddit(id)
 );
 
-
-
-
-
-
-
-
-
-
+CREATE TABLE image (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name TEXT,
+    location TEXT
+);
