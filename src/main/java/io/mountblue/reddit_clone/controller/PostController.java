@@ -26,7 +26,11 @@ public class PostController {
     private FileLocationService fileLocationService;
 
     @Autowired
-    public PostController(PostService postService, SubredditService subredditService, UserService userService, FileLocationService fileLocationService, FileSystemRepository fileSystemRepository) {
+    public PostController(PostService postService,
+                          SubredditService subredditService,
+                          UserService userService,
+                          FileLocationService fileLocationService,
+                          FileSystemRepository fileSystemRepository) {
         this.postService = postService;
         this.subredditService = subredditService;
         this.userService = userService;

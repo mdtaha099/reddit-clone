@@ -15,6 +15,10 @@ karma: <span th:text="${user.karma}"></span>
 <ul>
     <li th:each="subreddit : ${user.subreddits}" th:text="${subreddit.name}"></li>
 </ul>
+<h3>You have following posts</h3>
+<ul>
+    <li th:each="post : ${posts}" th:text="${post.content}"></li>
+</ul>
 
 </body>
 </html>
