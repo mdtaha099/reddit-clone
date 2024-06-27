@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reddit Clone</title>
+    <title>Reddit</title>
     <link rel="stylesheet" type="text/css" href="/homepage.css">
 </head>
+
 <body>
 <header>
     <a class="logo" th:href="@{/}">Reddit</a>
@@ -15,60 +16,28 @@
         <input type="text" placeholder="Search">
         <input type="submit" value="Search">
     </form>
+
     <nav sec:authorize="!isAuthenticated()">
         <a class="buttons" th:href="@{/login}"><button>Log In</button></a>
         <a class="buttons" th:href="@{/signup}"><button>Sign Up</button></a>
     </nav>
-<!--    <nav sec:authorize="isAuthenticated()">-->
-<!--        <a class="buttons" th:href="@{/logout}"><button>Log Out</button></a>-->
-<!--    </nav>-->
     <nav sec:authorize="isAuthenticated()">
         <a th:href="@{/profile}"><label class="currentUser" >Hi <span sec:authentication="name"></span></label></a>
 
         <a class="buttons" th:href="@{/logout}"><button>Log Out</button></a>
 
     </nav>
+
 </header>
-<div>
-
-<!--    <div class="container-fluid bg-light py-3">-->
-<!--        <a th:href="@{/newSubreddit}">create new subreddit</a>-->
-<!--        <a th:href="@{'/r/'+${name}+ '/join'}">Join</a>-->
-
-<!--        <div sec:authorize="hasRole('USER')">-->
-<!--            <form class="mb-2" th:action="@{/posts/newPost}">-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-
 <hr class="divider">
-
-
-    <div class="add-join">
-        <label class="sub-name">r/<span th:text="${name}"></span></label>
-        <div class="add-join" sec:authorize="hasRole('USER')">
-            <form class="join-form" th:action="@{/posts/newPost}">
-                <input type="hidden" name="subredditId" th:value="${subredditId}">
-                <input type="submit" value="Create a Post">
-            </form>
-
-            <a th:href="@{/newSubreddit}"><button class="btn-form">Create new Subreddit</button></a>
-            <a  th:href="@{'/r/'+${name}+ '/join'}"><button class="btn-form">Join</button></a>
-        </div>
-
-    </div>
-
+<div >
     <div class="sort">
-        <a  th:href="@{'/r/'+${name}+'/new'}" >
-            <button class="btn-small">Latest</button>
-        </a>
-        <a th:href="@{'/r/'+${name}+'/top'}">
-            <button  class="btn-small">Top</button>
-        </a>
+        <a th:href="@{/}"><button class="btn-small" >Latest</button></a>
+        <a th:href="@{/byUpvotes}"><button class="btn-small" >Top</button></a>
     </div>
-
 
     <hr>
+
 
     <div th:each="post: ${posts}">
         <div class="card">
@@ -80,7 +49,7 @@
                 <div class="card1">
                     <label>submitted on </label>
                     <span
-                            th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
+                          th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
                     </span>
                     <label>by</label>
                     <label th:text="${post.getUser().username}"></label>
