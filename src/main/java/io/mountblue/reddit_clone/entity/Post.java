@@ -30,6 +30,10 @@ public class Post {
     @JoinColumn(name = "parent_id")
     private Post parent;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private Image image;
+
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Post> children;
 
@@ -171,5 +175,13 @@ public class Post {
         }
 
         children.add(child);
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
