@@ -27,7 +27,7 @@
                 </div>
                 <div th:if="${comment.isPost}">
                     <h2 th:text="${comment.title}"></h2>
-                    <h4 class="fw-bold" th:text="${comment.content}"></h4>
+                    <h5 class="fw-bold" th:text="${comment.content}"></h5>
                 </div>
 
                 <div th:if="${!comment.isPost}">
