@@ -16,4 +16,6 @@ public interface PostService {
     List<Post> findAll();
 
     List<Post> findAllOrderByUpvotes();
+
+    List<Post> findAllByIsPostTrueAndContentContainingOrTitleContaining(String content, String title);
 }

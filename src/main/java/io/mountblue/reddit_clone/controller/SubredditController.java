@@ -4,6 +4,7 @@ import io.mountblue.reddit_clone.dao.SubredditRepository;
 import io.mountblue.reddit_clone.entity.Post;
 import io.mountblue.reddit_clone.entity.Subreddit;
 import io.mountblue.reddit_clone.entity.User;
+import io.mountblue.reddit_clone.service.PostService;
 import io.mountblue.reddit_clone.service.SubredditService;
 import io.mountblue.reddit_clone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,13 @@ import java.util.Set;
 @Controller
 public class SubredditController {
     private SubredditService subredditService;
+
+    private PostService postService;
     private UserService userService;
-    public SubredditController(SubredditService subredditService,UserService userService) {
+    public SubredditController(SubredditService subredditService,UserService userService,PostService postService) {
         this.subredditService = subredditService;
         this.userService = userService;
+        this.postService = postService;
     }
     @GetMapping("/newSubreddit")
     public String newSubreddit(Model model) {
@@ -84,5 +88,21 @@ public class SubredditController {
         subredditService.save(subreddit);
         return "subreddit/posts";
     }
-
+    @GetMapping("r/{name}/search/{search}")
+    public String getAllPosts(@PathVariable String search, @PathVariable String name,Model model) {
+        Subreddit subreddit = subredditService.findByName(name);
+        List<Post> posts = subredditService.findAllPostBySubredditContaining(subreddit.getId(),search,search);
+        List<Subreddit> subreddits = subredditService.findAllByNameContaining(search);
+        model.addAttribute("subreddits",subreddits);
+        model.addAttribute("posts",posts);
+        return "search/search";
+    }
+    @GetMapping("/search/{search}")
+    public String searchAll(@PathVariable String search,Model model) {
+        List<Post> posts = postService.findAllByIsPostTrueAndContentContainingOrTitleContaining(search,search);
+        List<Subreddit> subreddits = subredditService.findAllByNameContaining(search);
+        model.addAttribute("subreddits",subreddits);
+        model.addAttribute("posts",posts);
+        return "search/search";
+    }
 }

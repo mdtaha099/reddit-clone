@@ -42,4 +42,14 @@ public class SubredditServiceImpl implements SubredditService{
     public Subreddit findByName(String name) {
         return subredditRepository.findByName(name);
     }
+
+    @Override
+    public List<Post> findAllPostBySubredditContaining(int id, String content, String title) {
+        return subredditRepository.findAllPostBySubredditContaining(id,content,title);
+    }
+
+    @Override
+    public List<Subreddit> findAllByNameContaining(String search) {
+        return subredditRepository.findAllByNameContaining(search);
+    }
 }
