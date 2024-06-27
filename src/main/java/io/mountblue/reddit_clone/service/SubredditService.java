@@ -18,4 +18,6 @@ public interface SubredditService {
     Subreddit findByName(String name);
 
     List<Post> findAllPostBySubredditContaining(int id, String content, String title);
+
+    List<Subreddit> findAllByNameContaining(String search);
 }

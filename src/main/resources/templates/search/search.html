@@ -5,6 +5,9 @@
     <title>Search</title>
 </head>
 <body>
+    <div th:each="i : ${subreddits}">
+        <p th:text="${i.name}"></p>
+    </div>
     <div th:each="i : ${posts}">
         <ul>
             <a href="#"><p th:text="${i.title}"></p></a>

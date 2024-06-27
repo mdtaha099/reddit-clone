@@ -92,12 +92,16 @@ public class SubredditController {
     public String getAllPosts(@PathVariable String search, @PathVariable String name,Model model) {
         Subreddit subreddit = subredditService.findByName(name);
         List<Post> posts = subredditService.findAllPostBySubredditContaining(subreddit.getId(),search,search);
+        List<Subreddit> subreddits = subredditService.findAllByNameContaining(search);
+        model.addAttribute("subreddits",subreddits);
         model.addAttribute("posts",posts);
         return "search/search";
     }
     @GetMapping("/search/{search}")
     public String searchAll(@PathVariable String search,Model model) {
         List<Post> posts = postService.findAllByIsPostTrueAndContentContainingOrTitleContaining(search,search);
+        List<Subreddit> subreddits = subredditService.findAllByNameContaining(search);
+        model.addAttribute("subreddits",subreddits);
         model.addAttribute("posts",posts);
         return "search/search";
     }

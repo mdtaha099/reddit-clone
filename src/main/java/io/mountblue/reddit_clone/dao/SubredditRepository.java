@@ -35,4 +35,6 @@ public interface SubredditRepository extends JpaRepository<Subreddit,Integer> {
             "AND p.subreddit.id = :id "+
             "AND (p.content LIKE %:content% OR p.title LIKE %:title%) ")
     List<Post> findAllPostBySubredditContaining(int id,String content,String title);
+
+    List<Subreddit> findAllByNameContaining(String search);
 }
