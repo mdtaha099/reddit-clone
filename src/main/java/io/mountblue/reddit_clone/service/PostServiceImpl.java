@@ -6,20 +6,17 @@ import io.mountblue.reddit_clone.entity.Post;
 import io.mountblue.reddit_clone.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
-    private PostRepository postRepository;
-    private UserRepository userRepository;
+    private final PostRepository postRepository;
 
     @Autowired
     public PostServiceImpl(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
-        this.userRepository = userRepository;
     }
 
     @Override
@@ -70,5 +67,25 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findAllByIsPostTrueAndContentContainingOrTitleContaining(String content, String title) {
         return postRepository.findAllByIsPostTrueAndContentContainingOrTitleContaining(content,title);
+    }
+
+    @Override
+    public List<Post> findLatestPosts(User user) {
+        return postRepository.findAllPostsForUserOrderedByCreationDate(user.getId());
+    }
+
+    @Override
+    public List<Post> findTopPosts(User user) {
+        return postRepository.findAllPostsForUserOrderedByUpvotes(user.getId());
+    }
+
+    @Override
+    public List<Post> findLatestPosts() {
+        return postRepository.findAllByOrderByCreatedAtDesc();
+    }
+
+    @Override
+    public List<Post> findTopPosts() {
+        return postRepository.findAllByOrderByUpvotesDesc();
     }
 }

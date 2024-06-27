@@ -49,13 +49,13 @@
                 <div class="card1">
                     <label>submitted on </label>
                     <span
-                          th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
+                          th:text="${#temporals.format(post.createdAt, 'dd MMM yyyy')}">
                     </span>
                     <label>by</label>
-                    <label th:text="${post.getUser().username}"></label>
+                    <label th:text="${post.user.username}"></label>
                     <label>to</label>
                     <label>r/</label>
-                    <label th:text="${post.getSubreddit().name}"></label>
+                    <label th:text="${post.subreddit.name}"></label>
 
                     <div class="about-post">
                         <span th:text="${post.upvotes}"></span>
