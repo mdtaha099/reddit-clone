@@ -1,9 +1,12 @@
 package io.mountblue.reddit_clone.service;
 
+import io.mountblue.reddit_clone.entity.Post;
 import io.mountblue.reddit_clone.exception.UserAlreadyExistsException;
 import io.mountblue.reddit_clone.dao.UserRepository;
 import io.mountblue.reddit_clone.entity.User;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -28,5 +31,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<Post> findAllPostsByUserId(int userId) {
+        return userRepository.findAllPostsByUserId(userId);
     }
 }
