@@ -5,6 +5,9 @@ import io.mountblue.reddit_clone.dao.UserRepository;
 import io.mountblue.reddit_clone.entity.Post;
 import io.mountblue.reddit_clone.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -70,22 +73,26 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findLatestPosts(User user) {
-        return postRepository.findAllPostsForUserOrderedByCreationDate(user.getId());
+    public Page<Post> findLatestPosts(User user,int page) {
+        Pageable pageable = PageRequest.of(page,10);
+        return postRepository.findAllPostsForUserOrderedByCreationDate(user.getId(),pageable);
     }
 
     @Override
-    public List<Post> findTopPosts(User user) {
-        return postRepository.findAllPostsForUserOrderedByUpvotes(user.getId());
+    public Page<Post> findTopPosts(User user,int page) {
+        Pageable pageable = PageRequest.of(page,10);
+        return postRepository.findAllPostsForUserOrderedByUpvotes(user.getId(),pageable);
     }
 
     @Override
-    public List<Post> findLatestPosts() {
-        return postRepository.findAllByOrderByCreatedAtDesc();
+    public Page<Post> findLatestPosts(int page) {
+        Pageable pageable = PageRequest.of(page,10);
+        return postRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
     @Override
-    public List<Post> findTopPosts() {
-        return postRepository.findAllByOrderByUpvotesDesc();
+    public Page<Post> findTopPosts(int page) {
+        Pageable pageable = PageRequest.of(page,10);
+        return postRepository.findAllByOrderByUpvotesDesc(pageable);
     }
 }
