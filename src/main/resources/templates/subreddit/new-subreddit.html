@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Create-new-subreddit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit</title>
+    <link rel="stylesheet" type="text/css" href="/homepage.css">
 </head>
 <body>
-    <form th:action="@{/newSubreddit}" th:object="${subreddit}" method="POST">
-        <input type="text" name="name" placeholder="subreddit name"/>
-        <input type="submit" value="create-new-subreddit"/>
+
+<header>
+    <a class="logo" th:href="@{/}">Reddit</a>
+
+    <form class="search-form" th:action="@{/search}" method="get">
+        <input type="text" placeholder="Search" name="search">
+        <input type="submit" value="Search">
     </form>
+
+    <nav>
+        <a th:href="@{/profile}"><label class="currentUser" >Hi <span sec:authentication="name"></span></label></a>
+        <a class="buttons" th:href="@{/logout}"><button>Log Out</button></a>
+    </nav>
+</header>
+
+<hr class="divider">
+
+
+<form class="search-form" th:action="@{/newSubreddit}" th:object="${subreddit}" method="POST">
+    <input type="text" name="name" placeholder="Subreddit name"/>
+    <input type="submit" value="create-new-subreddit"/>
+</form>
+
+
 </body>
 </html>
