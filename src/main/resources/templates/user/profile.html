@@ -61,7 +61,7 @@
                         <label style="font-weight: 600; color: #02558f">
                             r/<a style="font-weight: 600; color: #02558f"
                                  th:href="@{/r/{name}(name=${post.subreddit.name})}"
-                                 th:text="${post.getSubreddit().name}">
+                                 th:text="${post.subreddit.name}">
                         </a>
                         </label>
                         <label>•</label>
@@ -116,3 +116,75 @@
 
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Reddit</title>-->
+<!--    <link rel="stylesheet" type="text/css" href="/profile.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--<header>-->
+<!--    <a class="logo" th:href="@{/}">Reddit</a>-->
+
+<!--    <form class="search-form" th:action="@{/search}" method="get">-->
+<!--        <input type="text" placeholder="Search" name="search">-->
+<!--        <input type="submit" value="Search">-->
+<!--    </form>-->
+
+<!--    <nav sec:authorize="isAuthenticated()">-->
+<!--        <a th:href="@{/profile}"><label class="currentUser" >Hi <span sec:authentication="name"></span></label></a>-->
+<!--        <a class="buttons" th:href="@{/logout}"><button>Log Out</button></a>-->
+<!--    </nav>-->
+
+<!--</header>-->
+<!--<hr class="divider">-->
+
+<!--<div class="wrapper">-->
+<!--    <div class="left-div">-->
+<!--        <h3>You have joined the following subreddits:</h3>-->
+<!--        <ul>-->
+<!--            <li class="li-sub" th:each="subreddit : ${user.subreddits}" >-->
+<!--                <a th:href="@{/r/{name}(name=${subreddit.name})}" th:text="${subreddit.name}"></a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <h3>You have following posts</h3>-->
+<!--        <ul>-->
+<!--            <li th:each="post : ${posts}" th:text="${post.content}"></li>-->
+<!--        </ul>-->
+
+<!--    </div>-->
+
+<!--    <div class="center-div">-->
+<!--        <label class="username" th:text="${user.username}"></label>-->
+<!--        <label class="uusername">u/<label th:text="${user.username}"></label></label>-->
+<!--        <hr style="margin-top: 10px; margin-bottom: 20px">-->
+<!--    </div>-->
+
+<!--    <div class="right-div">-->
+<!--        <div class="grad">-->
+
+<!--        </div>-->
+<!--        <label style="font-size: 30px; font-weight: 500" th:text="${user.username}"></label>-->
+<!--        <span style="font-weight: 500; font-size: larger; margin-top: 20px"-->
+<!--              th:text="${user.karma}"></span>-->
+<!--        <label style="font-weight: 300; font-size: medium">User Karma</label>-->
+
+<!--    </div>-->
+
+<!--</div>-->
+
+
+<!--&lt;!&ndash;<label>Karma:<span th:text="${user.karma}"></span></label>&ndash;&gt;-->
+
+
+
+
+
+
+
+<!--</body>-->
+<!--</html>-->

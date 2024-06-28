@@ -41,7 +41,7 @@ a{
     font-family: "Poppins", sans-serif;
     font-weight: normal;
     text-decoration: none;
-    color: #ffffff;
+    color: #6c6c6c;
     cursor: pointer;
 }
 
@@ -82,34 +82,11 @@ a{
     color: #FF5700;
 }
 
-/*.center-div{*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-self: center;*/
-/*    flex-direction: column;*/
-/*    margin-left: 27%;*/
-/*    width: 50%;*/
-/*    padding-left: 20px;*/
-/*    border: 1px solid #FF5700;*/
-/*}*/
-
 .divider {
     border: none ; /* Remove default border */
     height: 1px; /* Set the height of the line */
     background-color: rgba(0, 0, 0, 0.9); /* Set the color to grey */
 }
-
-/*.center-div {*/
-/*    display: flex;*/
-/*    justify-content: center; !* Horizontally center content *!*/
-
-/*    flex-direction: column; !* Align items in column *!*/
-/*    width: 50%; !* Adjust width as needed *!*/
-/*    padding: 20px; !* Adjust padding as needed *!*/
-/*    border: 1px solid rgba(0, 0, 0, 0.38);*/
-/*    margin: -1px auto; !* Center horizontally using auto margins *!*/
-
-/*}*/
 
 .wrapper {
     display: flex;
@@ -166,16 +143,6 @@ a{
     color: #6c6c6c;
 }
 
-/*.li-sub{*/
-/*    list-style: none;*/
-/*    margin-top: 3px;*/
-/*    background: gray;*/
-/*    width: auto;*/
-/*    height: 30px;*/
-/*    border-radius: 20px;*/
-
-/*}*/
-
 
 ul {
     list-style-type: none;
@@ -188,10 +155,46 @@ ul {
 }
 
 .li-sub {
-    background: #6c6c6c;
+    background: #ffffff;
     padding: 5px 15px; /* Adjust padding as needed */
     border-radius: 10px;
     margin: 5px; /* Adjust margin between items */
     text-align: center; /* Center text horizontally */
+    border: 1px solid #6c6c6c;
 }
 
+.li-sub:hover {
+    background: #e3e3e3;
+}
+
+.navs {
+    margin-top: 50px;
+    text-align: right; /* Align text content to the right */
+}
+
+.card {
+    align-self: center;
+    border: none;
+    border-radius: 3px;
+    padding-left: 5px;
+    transition: transform 0.3s ease;
+    margin: 3px 0; /* Add space between cards */
+    background-color: #ffffff;
+}
+
+.card:hover {
+    background-color: rgba(202, 203, 209, 0.38);
+    /*transform: translateY(-3px);*/
+    /*box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);*/
+}
+
+.card-title {
+    font-size: large;
+    color: #0079d3; /* Reddit blue */
+}
+
+.card1{
+    font-size: small;
+    font-weight: normal;
+    color: #221f1f;
+}
