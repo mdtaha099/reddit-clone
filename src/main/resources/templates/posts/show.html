@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${post.title}"></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/show.css">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #dae0e6;
-            padding-top: 2rem;
-        }
+
         .comment-list {
             list-style-type: none;
             padding-left: 0;
@@ -24,6 +21,7 @@
             margin-bottom: 15px; /* Space between comments */
             box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Subtle shadow */
         }
+
         .comment .content {
             margin-bottom: 2px; /* Space between content and replies */
             font-size: 14px; /* Font size of comment text */
@@ -49,25 +47,82 @@
     </style>
 </head>
 <body>
+<header>
+    <a class="logo" th:href="@{/}">reddit</a>
+    <form class="search-form" th:action="@{/search}" method="get">
+        <input type="text" placeholder="Search Reddit" name="search">
+    </form>
+    <nav sec:authorize="!isAuthenticated()">
+        <a class="buttons" th:href="@{/login}">
+            <button>Log In</button>
+        </a>
+        <a class="buttons" th:href="@{/signup}">
+            <button>Sign Up</button>
+        </a>
+    </nav>
+    <nav sec:authorize="isAuthenticated()">
+        <a th:href="@{/profile}"><label class="currentUser">Hi <span sec:authentication="name"></span></label></a>
+        <a class="buttons" th:href="@{/logout}">
+            <button>Log Out</button>
+        </a>
+    </nav>
+</header>
 
-<div class="container mt-1">
-    <div th:replace="posts/post-comments :: commentThread"></div>
+<hr>
 
-    <span class="text-muted " th:text="${post.upvotes}"></span>
-    <span class="text-muted">⇅</span>
-    <span class="text-muted me-2" th:text="${post.downvotes}"></span>
+<div class="wrapper">
+    <div class="left-div">
+        <div class="left-tag-div">
+            <a class="left-tag" th:href="@{/}"
+            >🏠Home</a>
+            <a class="left-tag" th:href="@{/byUpvotes}"
+            >➚ Popular</a>
+        </div>
 
-
-    <div sec:authorize="hasRole('USER')">
-        <form method="post" th:action="@{/posts/addComment(postId=${post.id})}" class="mb-4">
-            <div class="mb-3">
-                <input type="text" class="form-control" name="content" placeholder="Your Comment" required>
-            </div>
-            <div>
-                <button type="submit" class="btn btn-primary">Add Comment</button>
-            </div>
-        </form>
+        <hr>
     </div>
+    <div class="center-div">
+        <div class="container mt-1">
+            <div th:replace="posts/post-comments :: commentThread"></div>
+
+            <span class="text-muted " th:text="${post.upvotes}"></span>
+            <span class="text-muted">⇅</span>
+            <span class="text-muted me-2" th:text="${post.downvotes}"></span>
+
+
+            <div sec:authorize="hasRole('USER')">
+                <form method="post" th:action="@{/posts/addComment(postId=${post.id})}" class="mb-4">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="content" placeholder="Your Comment" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Add Comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="right-div"></div>
 </div>
+
+<!--<div class="container mt-1">-->
+<!--    <div th:replace="posts/post-comments :: commentThread"></div>-->
+
+<!--    <span class="text-muted " th:text="${post.upvotes}"></span>-->
+<!--    <span class="text-muted">⇅</span>-->
+<!--    <span class="text-muted me-2" th:text="${post.downvotes}"></span>-->
+
+
+<!--    <div sec:authorize="hasRole('USER')">-->
+<!--        <form method="post" th:action="@{/posts/addComment(postId=${post.id})}" class="mb-4">-->
+<!--            <div class="mb-3">-->
+<!--                <input type="text" class="form-control" name="content" placeholder="Your Comment" required>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <button type="submit" class="btn btn-primary">Add Comment</button>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
 </body>
 </html>
