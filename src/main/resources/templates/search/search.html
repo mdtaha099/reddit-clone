@@ -5,12 +5,14 @@
     <title>Search</title>
 </head>
 <body>
+    <h3>Subreddits</h3>
     <div th:each="i : ${subreddits}">
         <p th:text="${i.name}"></p>
     </div>
+    <h3>posts/comments</h3>
     <div th:each="i : ${posts}">
         <ul>
-            <a href="#"><p th:text="${i.title}"></p></a>
+            <a th:href="@{'/posts/'+${i.id}}"><p th:text="${i.title}"></p></a>
             <p th:text="${i.content}"></p>
         </ul>
     </div>

@@ -1,13 +1,12 @@
 package io.mountblue.reddit_clone.controller;
 
-import io.mountblue.reddit_clone.dao.SubredditRepository;
 import io.mountblue.reddit_clone.entity.Post;
 import io.mountblue.reddit_clone.entity.Subreddit;
 import io.mountblue.reddit_clone.entity.User;
 import io.mountblue.reddit_clone.service.PostService;
 import io.mountblue.reddit_clone.service.SubredditService;
 import io.mountblue.reddit_clone.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,6 +23,7 @@ public class SubredditController {
 
     private PostService postService;
     private UserService userService;
+    private String url = "";
     public SubredditController(SubredditService subredditService,UserService userService,PostService postService) {
         this.subredditService = subredditService;
         this.userService = userService;
@@ -44,43 +44,66 @@ public class SubredditController {
         return "redirect:r/"+subreddit.getName();
     }
     @RequestMapping("r/{name}")
-    public String getPosts(@PathVariable String name, Model model) {
+    public String getPosts(@PathVariable String name,
+                           Model model,
+                           @RequestParam(defaultValue = "0") int page) {
         Subreddit subreddit = subredditService.findByName(name);
-        List<Post> posts = subredditService.findAllPostById(subreddit.getId());
+        Page<Post> posts = subredditService.findAllPostById(subreddit.getId(),page);
+        url = "/r/"+name;
+        System.out.println(url);
         model.addAttribute("subredditId",subreddit.getId());
         model.addAttribute("name",name);
         model.addAttribute("posts",posts);
+        model.addAttribute("url",url);
+        model.addAttribute("currentPage",page);
+        model.addAttribute("totalPages",posts.getTotalPages());
         return "subreddit/posts";
     }
 
     @GetMapping("r/{name}/new")
-    public String getPostsOrderByDate(@PathVariable String name, Model model) {
+    public String getPostsOrderByDate(@PathVariable String name,
+                                      Model model,
+                                      @RequestParam(defaultValue = "0") int page) {
         Subreddit subreddit = subredditService.findByName(name);
-        List<Post> posts = subredditService.findAllPostByIdOrderByUpdatedAt(subreddit.getId());
+        Page<Post> posts = subredditService.findAllPostByIdOrderByUpdatedAt(subreddit.getId(),page);
+        url = "/r/"+name+"/new";
+        System.out.println(url);
         model.addAttribute("subredditId",subreddit.getId());
         model.addAttribute("posts",posts);
+        model.addAttribute("currentPage",page);
+        model.addAttribute("totalPages",posts.getTotalPages());
+        model.addAttribute("url",url);
         return "subreddit/posts";
     }
 
     @GetMapping("r/{name}/top")
-    public String getPostsOrderByUpvotes(@PathVariable String name, Model model) {
+    public String getPostsOrderByUpvotes(@PathVariable String name,
+                                         Model model,
+                                         @RequestParam(defaultValue = "0") int page) {
         Subreddit subreddit = subredditService.findByName(name);
         int id = subreddit.getId();
-        List<Post> posts = subredditService.findAllPostByIdOrderByUpvotes(id);
+        Page<Post> posts = subredditService.findAllPostByIdOrderByUpvotes(id,page);
+        url = "/r/"+name+"/top";
+        System.out.println(url);
         model.addAttribute("subredditId",id);
         model.addAttribute("posts",posts);
+        model.addAttribute("currentPage",page);
+        model.addAttribute("totalPages",posts.getTotalPages());
+        model.addAttribute("url",url);
         return "subreddit/posts";
     }
     @GetMapping("r/{name}/join")
-    public String joinSubreddit(@PathVariable String name,Model model) {
+    public String joinSubreddit(@PathVariable String name,Model model,@RequestParam(defaultValue = "0") int page) {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(loggedInUser.getName());
         Subreddit subreddit = subredditService.findByName(name);
         Set<User> usersBySubreddit = new HashSet<>(subreddit.getUsers());
-        List<Post> posts = subredditService.findAllPostById(subreddit.getId());
+        Page<Post> posts = subredditService.findAllPostById(subreddit.getId(), page);
         int subredditId = subreddit.getId();
         model.addAttribute("subredditId",subredditId);
         model.addAttribute("posts",posts);
+        model.addAttribute("currentPage",page);
+        model.addAttribute("totalPages",posts.getTotalPages());
         if(usersBySubreddit.contains(user)) {
             return "subreddit/posts";
         }

@@ -3,11 +3,12 @@ package io.mountblue.reddit_clone.service;
 import io.mountblue.reddit_clone.dao.SubredditRepository;
 import io.mountblue.reddit_clone.entity.Post;
 import io.mountblue.reddit_clone.entity.Subreddit;
-import io.mountblue.reddit_clone.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SubredditServiceImpl implements SubredditService{
@@ -16,8 +17,9 @@ public class SubredditServiceImpl implements SubredditService{
         this.subredditRepository = subredditRepository;
     }
 
-    public List<Post> findAllPostById(int id) {
-        return subredditRepository.findAllPostsById(id);
+    public Page<Post> findAllPostById(int id, int page) {
+        Pageable pageable = PageRequest.of(page,10);
+        return subredditRepository.findAllPostsById(id,pageable);
     }
 
     public Subreddit findById(int id) {
@@ -25,13 +27,15 @@ public class SubredditServiceImpl implements SubredditService{
     }
 
     @Override
-    public List<Post> findAllPostByIdOrderByUpvotes(int id) {
-        return subredditRepository.findAllPostsByIdOrderByUpvotes(id);
+    public Page<Post> findAllPostByIdOrderByUpvotes(int id,int page) {
+        Pageable pageable = PageRequest.of(page,10);
+        return subredditRepository.findAllPostsByIdOrderByUpvotes(id,pageable);
     }
 
     @Override
-    public List<Post> findAllPostByIdOrderByUpdatedAt(int id) {
-        return subredditRepository.findAllPostsByIdOrderByUpdatedAt(id);
+    public Page<Post> findAllPostByIdOrderByUpdatedAt(int id,int page) {
+        Pageable pageable = PageRequest.of(page,10);
+        return subredditRepository.findAllPostsByIdOrderByUpdatedAt(id,pageable);
     }
     @Override
     public void save(Subreddit subreddit) {

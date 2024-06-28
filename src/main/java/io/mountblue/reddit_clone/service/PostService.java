@@ -2,6 +2,7 @@ package io.mountblue.reddit_clone.service;
 
 import io.mountblue.reddit_clone.entity.Post;
 import io.mountblue.reddit_clone.entity.User;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -20,10 +21,10 @@ public interface PostService {
 
     List<Post> findAllByIsPostTrueAndContentContainingOrTitleContaining(String content, String title);
 
-    List<Post> findLatestPosts(User user);
-    List<Post> findTopPosts(User user);
+    Page<Post> findLatestPosts(User user,int page);
+    Page<Post> findTopPosts(User user,int page);
 
-    List<Post> findLatestPosts();
+    Page<Post> findLatestPosts(int page);
 
-    List<Post> findTopPosts();
+    Page<Post> findTopPosts(int page);
 }
