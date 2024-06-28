@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usernames</title>
+</head>
+<body>
+  <form th:action="@{/generateUserName}" method="post">
+    <input type="text" name="username" placeholder="enter your name">
+    <input type="submit" value="generate-username">
+  </form>
+    <div th:each="i : ${username}">
+        <ul th:text="${i}"></ul>
+    </div>
+</body>
+</html>
