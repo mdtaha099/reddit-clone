@@ -24,6 +24,7 @@ public class HomepageController {
     private PostService postService;
     private UserService userService;
     private SubredditService subredditService;
+    private String url = "";
 
     public HomepageController(PostService postService, UserService userService, SubredditService subredditService) {
         this.postService = postService;
@@ -34,6 +35,8 @@ public class HomepageController {
     @GetMapping("/")
     public String getAllPosts(Model model,@RequestParam(defaultValue = "0") int page) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        url = "/";
+        model.addAttribute("url",url);
         if (authentication.getName().equals("anonymousUser")) {
             Page<Post> posts = postService.findLatestPosts(page);
             model.addAttribute("posts", posts);
@@ -53,7 +56,8 @@ public class HomepageController {
     @GetMapping("/byUpvotes")
     public String getAllPostsByUpvotes(Model model, @RequestParam(defaultValue = "0") int page) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
+        url = "/byUpvotes";
+        model.addAttribute("url",url);
         if (authentication.getName().equals("anonymousUser")) {
             Page<Post> posts = postService.findTopPosts(page);
             model.addAttribute("currentPage",page);

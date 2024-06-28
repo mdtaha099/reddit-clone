@@ -105,6 +105,12 @@
             </div>
         </div>
     </div>
+<!--    <a th:if="${currentPage > 0}" th:href="@{${url}(page = ${currentPage - 1})}">prev</a>-->
+<!--    <a th:if="${currentPage < totalPages - 1}"  th:href="@{${url}(page=${currentPage + 1})}">next</a>-->
+    <div th:with="url=${url}">
+        <a th:if="${currentPage > 0}" th:href="@{${url}(page=${currentPage - 1})}">prev</a>
+        <a th:if="${currentPage < totalPages - 1}" th:href="@{${url}(page=${currentPage + 1})}">next</a>
+    </div>
 </div>
 
 </body>
