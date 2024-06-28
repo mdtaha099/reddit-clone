@@ -11,8 +11,8 @@
 <header>
     <a class="logo" th:href="@{/}">Reddit</a>
 
-    <form class="search-form">
-        <input type="text" placeholder="Search">
+    <form class="search-form" th:action="@{'/r/'+${name}+'/search'}">
+        <input type="text" placeholder="Search" name="search">
         <input type="submit" value="Search">
     </form>
     <nav sec:authorize="!isAuthenticated()">
@@ -30,16 +30,6 @@
     </nav>
 </header>
 <div>
-
-<!--    <div class="container-fluid bg-light py-3">-->
-<!--        <a th:href="@{/newSubreddit}">create new subreddit</a>-->
-<!--        <a th:href="@{'/r/'+${name}+ '/join'}">Join</a>-->
-
-<!--        <div sec:authorize="hasRole('USER')">-->
-<!--            <form class="mb-2" th:action="@{/posts/newPost}">-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
 
 <hr class="divider">
 
