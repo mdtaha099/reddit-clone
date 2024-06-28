@@ -12,7 +12,7 @@
 <header>
     <a class="logo" th:href="@{/}">Reddit</a>
 
-    <form class="search-form" th:action="@{'/r/'+${name}+'/search'}">
+    <form class="search-form" th:action="@{/search}">
         <input type="text" placeholder="Search" name="search">
         <input type="submit" value="Search">
     </form>
