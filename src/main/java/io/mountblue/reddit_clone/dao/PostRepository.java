@@ -14,7 +14,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
     List<Post> findAllByIsPostTrueOrderByUpvotesDesc();
 
-    @Query("SELECT p FROM Post p WHERE p.content LIKE %:content% OR p.title LIKE %:title% ")
+    @Query("SELECT p FROM Post p WHERE p.isPost = true AND (p.content LIKE %:content% OR p.title LIKE %:title%)")
     List<Post> findAllByIsPostTrueAndContentContainingOrTitleContaining(String content,String title);
     @Query(value = "SELECT p.* FROM post p " +
             "INNER JOIN subreddit s ON s.id = p.subreddit_id " +
