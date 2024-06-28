@@ -21,6 +21,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             "INNER JOIN user_subreddit us ON us.subreddit_id = s.id " +
             "INNER JOIN user u ON u.id = us.user_id " +
             "WHERE u.id = :userId " +
+            " AND p.is_post IS TRUE " +
             "ORDER BY p.created_at DESC",
             countQuery = "SELECT COUNT(*) FROM post p " +
                     "INNER JOIN subreddit s ON s.id = p.subreddit_id " +
@@ -35,6 +36,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             "INNER JOIN user_subreddit us ON us.subreddit_id = s.id " +
             "INNER JOIN user u ON u.id = us.user_id " +
             "WHERE u.id = :userId " +
+            " AND p.is_post IS TRUE " +
             "ORDER BY p.upvotes DESC",
             countQuery = "SELECT COUNT(*) FROM post p " +
                     "INNER JOIN subreddit s ON s.id = p.subreddit_id " +
