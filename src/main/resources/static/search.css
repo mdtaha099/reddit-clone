@@ -12,12 +12,53 @@ body{
     padding: 0;
 }
 
+
 header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 0;
+    padding: 0;
+    height: 55px;
     background-color: #ffffff;
+}
+
+.currentUser{
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: large;
+    color: #0079d3;
+    transition: background-color 0.8s ease;
+}
+.currentUser:hover{
+    color: #FF5700;
+    text-decoration: overline;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*padding: 10px;*/
+    border-radius: 5px;
+}
+
+.search-form input[type="text"] {
+    align-items: center;
+    box-sizing: border-box;
+    padding: 8px 18px;
+    border: 1px solid #f6f8f9;
+    border-radius: 50px 50px;
+    height: 40px;
+    width: 550px; /* Adjust width as needed */
+    background-color: #f6f8f9;
+    font-weight: 200;
+    font-size: medium;
+    color: #2a2f30;
+}
+
+.search-form input[type="text"]:hover {
+    background-color: #dbe4e9;
+    border: 1px solid #dbe4e9;
 }
 
 a{
@@ -48,27 +89,9 @@ button:hover, input[type="submit"]:hover {
 }
 
 .logo{
-    font-size: 30px;
+    font-size: 27px;
+    font-weight: 600;
     color: #FF5700;
-}
-
-.search-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.search-form input[type="text"] {
-    padding: 8px;
-    border: 1px solid #FF5700;
-    border-radius: 50px 50px;
-    font-size: 14px;
-    width: 400px; /* Adjust width as needed */
-}
-.search-form input[type="text"]:focus {
-    border: 1px solid #FF5700;
 }
 
 .currentUser{
@@ -86,9 +109,8 @@ button:hover, input[type="submit"]:hover {
 .divider {
     border: none ; /* Remove default border */
     height: 1px; /* Set the height of the line */
-    background-color: rgba(0, 0, 0, 0.9); /* Set the color to grey */
+    background-color: rgba(158, 158, 158, 0.8); /* Set the color to grey */
 }
-
 .wrapper {
     display: flex;
     justify-content: left; /* Center items horizontally */

@@ -63,25 +63,31 @@
             <div class="card">
                 <div class="card-body">
                     <div class="about-post">
-                        <label style="font-weight: 600; color: #02558f">
-                            r/<a style="font-weight: 600; color: #02558f"
+                        <span style="font-weight: 500; color: rgba(0,43,73,0.72);font-size: 13px">
+                            r/<a style="font-weight: 500; color: rgba(0,43,73,0.72);font-size: 13px"
                                  th:href="@{/r/{name}(name=${post.subreddit.name})}"
                                  th:text="${post.getSubreddit().name}">
                         </a>
-                        </label>
+                        </span>
                         <span>•</span>
-                        <span th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
+                        <span style="font-weight: 400; color: rgb(0,43,73); font-size: 12px"
+                              th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
                         </span>
                     </div>
+
                     <a th:href="@{/posts/{postId}(postId=${post.id})}">
                         <span class="card-title" th:text="${post.title}"></span>
                     </a>
+                    <div class="card-content">
+                        <span th:text="${post.content}"></span>
+                    </div>
+
 
                     <div class="card1">
                         <div class="image" th:if="${post.image}">
                             <img th:src="@{'/image/' + ${post.image.id}}">
                         </div>
-                        <label th:text="${post.content}"></label>
+
                         <div class="about-post">
                             <span th:text="${post.upvotes}"></span>
                             <span>⇅</span>
@@ -97,6 +103,7 @@
                     </div>
                 </div>
             </div>
+            <hr>
         </div>
     </div>
 

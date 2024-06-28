@@ -9,21 +9,23 @@
 </head>
 <body>
 <header>
-    <a class="logo" th:href="@{/}">Reddit</a>
-
-    <form class="search-form" th:action="@{'/r/'+${name}+'/search'}">
-        <input type="text" placeholder="Search" name="search">
-        <input type="submit" value="Search">
+    <a class="logo" th:href="@{/}">reddit</a>
+    <form class="search-form" th:action="@{/search}" method="get">
+        <input type="text" placeholder="Search Reddit" name="search">
     </form>
     <nav sec:authorize="!isAuthenticated()">
-        <a class="buttons" th:href="@{/login}"><button>Log In</button></a>
-        <a class="buttons" th:href="@{/signup}"><button>Sign Up</button></a>
+        <a class="buttons" th:href="@{/login}">
+            <button>Log In</button>
+        </a>
+        <a class="buttons" th:href="@{/signup}">
+            <button>Sign Up</button>
+        </a>
     </nav>
     <nav sec:authorize="isAuthenticated()">
-        <a th:href="@{/profile}"><label class="currentUser" >Hi <span sec:authentication="name"></span></label></a>
-
-        <a class="buttons" th:href="@{/logout}"><button>Log Out</button></a>
-
+        <a th:href="@{/profile}"><label class="currentUser">Hi <span sec:authentication="name"></span></label></a>
+        <a class="buttons" th:href="@{/logout}">
+            <button>Log Out</button>
+        </a>
     </nav>
 </header>
 
@@ -31,78 +33,101 @@
     <hr class="divider">
 
 
-    <div class="add-join">
-        <label class="sub-name">r/<span th:text="${name}"></span></label>
-        <div class="add-join" sec:authorize="hasRole('USER')">
-            <form class="join-form" th:action="@{/posts/newPost}">
-                <input type="hidden" name="subredditId" th:value="${subredditId}">
-                <input type="submit" value="Create a Post">
-            </form>
+    <div class="wrapper">
+        <div class="left-div">
+            <div class="left-tag-div">
+                <a class="left-tag" th:href="@{/}"
+                >🏠Home</a>
+                <a class="left-tag" th:href="@{/byUpvotes}"
+                >➚ Popular</a>
+            </div>
 
-            <a th:href="@{/newSubreddit}"><button class="btn-form">Create new Subreddit</button></a>
-            <a  th:href="@{'/r/'+${name}+ '/join'}"><button class="btn-join">Join</button></a>
+            <hr>
         </div>
 
-    </div>
+        <div class="center-div">
+            <div class="add-join">
+                <label class="sub-name">r/<span th:text="${name}"></span></label>
 
-    <div class="sort">
-        <a  th:href="@{'/r/'+${name}+'/new'}" >
-            <button class="btn-small">Latest</button>
-        </a>
-        <a th:href="@{'/r/'+${name}+'/top'}">
-            <button  class="btn-small">Top</button>
-        </a>
-    </div>
+                <div class="add-join1" sec:authorize="hasRole('USER')">
+                    <form class="join-form" th:action="@{/posts/newPost}">
+                        <input type="hidden" name="subredditId" th:value="${subredditId}">
+                        <input type="submit" value="Create a Post">
+                    </form>
 
-
-    <hr>
-
-    <div th:each="post: ${posts}">
-        <div class="card">
-            <div class="card-body">
-                <a th:href="@{/posts/{postId}(postId=${post.id})}">
-                    <span class="card-title" th:text="${post.title}"></span>
-                </a>
-
-                <div class="card1">
-                    <label>submitted on </label>
-                    <span
-                            th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
-                    </span>
-
-                    <label>by</label>
-
-                    <label style="font-weight: 500; color: #000000" th:text="${post.user.username}"></label>
-
-                    <label>to</label>
-
-                    <label style="font-weight: 600; color: #02558f">
-                        r/<a style="font-weight: 600; color: #02558f"
-                             th:href="@{/r/{name}(name=${post.subreddit.name})}"
-                             th:text="${post.getSubreddit().name}">
-                    </a>
-                    </label>
-
-                    <div class="about-post">
-                        <span th:text="${post.upvotes}"></span>
-                        <span>⇅</span>
-                        <span th:text="${post.downvotes}"></span>
-
-                        <span>•</span>
-                        <a style="font-weight: 500" th:href="@{/posts/{postId}(postId=${post.id})}">
-                            <span th:text="${post.children.size()}"></span>
-                            <span>comments</span>
-                        </a>
-                    </div>
-
+                    <a th:href="@{/newSubreddit}"><button class="btn-form">Create new Subreddit</button></a>
+                    <a  th:href="@{'/r/'+${name}+ '/join'}"><button class="btn-join">Join</button></a>
                 </div>
             </div>
+<!--            <hr class="divider">-->
+
+            <div class="sort">
+                <a  th:href="@{'/r/'+${name}+'/new'}" >
+                    <button class="btn-small">Latest</button>
+                </a>
+                <a th:href="@{'/r/'+${name}+'/top'}">
+                    <button  class="btn-small">Top</button>
+                </a>
+            </div >
+            <div th:each="post: ${posts}">
+                <hr>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="about-post">
+                        <span style="font-weight: 500; color: rgba(0,43,73,0.72);font-size: 13px">
+                            r/<a style="font-weight: 500; color: rgba(0,43,73,0.72);font-size: 13px"
+                                 th:href="@{/r/{name}(name=${post.subreddit.name})}"
+                                 th:text="${post.getSubreddit().name}">
+                        </a>
+                        </span>
+                            <span>•</span>
+                            <span style="font-weight: 400; color: rgb(0,43,73); font-size: 12px"
+                                  th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
+                        </span>
+                        </div>
+
+                        <a th:href="@{/posts/{postId}(postId=${post.id})}">
+                            <span class="card-title" th:text="${post.title}"></span>
+                        </a>
+                        <div class="card-content">
+                            <span th:text="${post.content}"></span>
+                        </div>
+
+
+                        <div class="card1">
+                            <div class="image" th:if="${post.image}">
+                                <img th:src="@{'/image/' + ${post.image.id}}">
+                            </div>
+
+                            <div class="about-post">
+                                <span th:text="${post.upvotes}"></span>
+                                <span>⇅</span>
+                                <span th:text="${post.downvotes}"></span>
+
+                                <span>•</span>
+                                <a style="font-weight: 500" th:href="@{/posts/{postId}(postId=${post.id})}">
+                                    <span th:text="${post.children.size()}"></span>
+                                    <span>comments</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div th:with="url=${url}">
+                <a th:if="${currentPage > 0}" th:href="@{${url}(page=${currentPage - 1})}">prev</a>
+                <a th:if="${currentPage < totalPages - 1}" th:href="@{${url}(page=${currentPage + 1})}">next</a>
+            </div>
+
         </div>
+        <div class="right-div">
+
+        </div>
+
     </div>
-        <div th:with="url=${url}">
-            <a th:if="${currentPage > 0}" th:href="@{${url}(page=${currentPage - 1})}">prev</a>
-            <a th:if="${currentPage < totalPages - 1}" th:href="@{${url}(page=${currentPage + 1})}">next</a>
-        </div>
+
 </div>
 
 </body>

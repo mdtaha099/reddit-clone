@@ -10,24 +10,31 @@
 <body>
 
 <header>
-    <a class="logo" th:href="@{/}">Reddit</a>
-
+    <a class="logo" th:href="@{/}">reddit</a>
     <form class="search-form" th:action="@{/search}" method="get">
-        <input type="text" placeholder="Search" name="search">
-        <input type="submit" value="Search">
+        <input type="text" placeholder="Search Reddit" name="search">
     </form>
-
-    <nav>
-        <a th:href="@{/profile}"><label class="currentUser" >Hi <span sec:authentication="name"></span></label></a>
-        <a class="buttons" th:href="@{/logout}"><button>Log Out</button></a>
+    <nav sec:authorize="!isAuthenticated()">
+        <a class="buttons" th:href="@{/login}">
+            <button>Log In</button>
+        </a>
+        <a class="buttons" th:href="@{/signup}">
+            <button>Sign Up</button>
+        </a>
+    </nav>
+    <nav sec:authorize="isAuthenticated()">
+        <a th:href="@{/profile}"><label class="currentUser">Hi <span sec:authentication="name"></span></label></a>
+        <a class="buttons" th:href="@{/logout}">
+            <button>Log Out</button>
+        </a>
     </nav>
 </header>
 
 <hr class="divider">
 
-
+<br>
 <form class="search-form" th:action="@{/newSubreddit}" th:object="${subreddit}" method="POST">
-    <input type="text" name="name" placeholder="Subreddit name"/>
+    <input style="border: 1px solid gray" type="text" name="name" placeholder="Subreddit name"/>
     <input type="submit" value="create-new-subreddit"/>
 </form>
 
