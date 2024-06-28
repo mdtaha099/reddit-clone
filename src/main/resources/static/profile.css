@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    margin: 0 8px;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    background-color: #ffffff;
+}
+
+
+button, input[type="submit"] {
+    background-color: #ffffff;
+    margin-left: 5px;
+    color: #FF5700;
+    border: 1px solid #FF5700;
+    padding: 8px 20px;
+    border-radius: 50px 50px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #FF4500;
+    color: #ffffff;
+}
+
+a{
+    font-family: "Poppins", sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+
+.logo{
+    font-size: 30px;
+    color: #FF5700;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.search-form input[type="text"] {
+    padding: 8px;
+    border: 1px solid #FF5700;
+    border-radius: 50px 50px;
+    font-size: 14px;
+    width: 400px; /* Adjust width as needed */
+}
+.search-form input[type="text"]:focus {
+    border: 1px solid #FF5700;
+}
+
+.currentUser{
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: large;
+    color: #0079d3;
+    transition: 0.3s;
+}
+.currentUser:hover{
+    text-decoration: overline;
+    color: #FF5700;
+}
+
+/*.center-div{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-self: center;*/
+/*    flex-direction: column;*/
+/*    margin-left: 27%;*/
+/*    width: 50%;*/
+/*    padding-left: 20px;*/
+/*    border: 1px solid #FF5700;*/
+/*}*/
+
+.divider {
+    border: none ; /* Remove default border */
+    height: 1px; /* Set the height of the line */
+    background-color: rgba(0, 0, 0, 0.9); /* Set the color to grey */
+}
+
+/*.center-div {*/
+/*    display: flex;*/
+/*    justify-content: center; !* Horizontally center content *!*/
+
+/*    flex-direction: column; !* Align items in column *!*/
+/*    width: 50%; !* Adjust width as needed *!*/
+/*    padding: 20px; !* Adjust padding as needed *!*/
+/*    border: 1px solid rgba(0, 0, 0, 0.38);*/
+/*    margin: -1px auto; !* Center horizontally using auto margins *!*/
+
+/*}*/
+
+.wrapper {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: flex-start; /* Align items at the top vertically */
+    margin-top: -1px; /* Adjust margin as needed */
+}
+
+.center-div {
+    display: flex;
+    flex-direction: column;
+    padding: 20px; /* Adjust padding as needed */
+    border: 1px solid rgba(0, 0, 0, 0.38);
+    box-sizing: border-box; /* Include padding and border in the width */
+    width: 50%;
+    /*margin-left: 22%;*/
+}
+
+.right-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+
+    padding: 20px; /* Adjust padding as needed */
+    width: 25%;
+    height: 100vh;
+
+    box-sizing: border-box; /* Include padding and border in the width */
+    margin-left: -1px; /* Add space between center-div and right-div */
+}
+
+.left-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-right: -1px;
+    padding: 20px; /* Adjust padding as needed */
+    width: 25%;
+    height: 100vh;
+
+    box-sizing: border-box; /* Include padding and border in the width */
+
+}
+
+.username{
+    font-weight: 550;
+    font-size: 40px;
+    margin-bottom: -15px;
+}
+.uusername{
+    margin-top: 0;
+    font-weight: 490;
+    font-size: medium;
+    color: #6c6c6c;
+}
+
+/*.li-sub{*/
+/*    list-style: none;*/
+/*    margin-top: 3px;*/
+/*    background: gray;*/
+/*    width: auto;*/
+/*    height: 30px;*/
+/*    border-radius: 20px;*/
+
+/*}*/
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    width: max-content;
+    flex-direction: column;
+    flex-wrap: wrap; /* Allow items to wrap into multiple lines */
+    justify-content: center; /* Center items horizontally */
+}
+
+.li-sub {
+    background: #6c6c6c;
+    padding: 5px 15px; /* Adjust padding as needed */
+    border-radius: 10px;
+    margin: 5px; /* Adjust margin between items */
+    text-align: center; /* Center text horizontally */
+}
+

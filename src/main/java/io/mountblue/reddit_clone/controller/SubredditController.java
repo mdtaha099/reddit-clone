@@ -128,4 +128,15 @@ public class SubredditController {
         model.addAttribute("posts",posts);
         return "search/search";
     }
+
+    @GetMapping("/search")
+    public String searchHome(@RequestParam String search) {
+        return "redirect:/search/"+search;
+    }
+
+    @GetMapping("/r/{sub}/search")
+    public String searchSubreddit(@PathVariable String sub,
+                                  @RequestParam("search") String search) {
+        return "redirect:/r/" + sub + "/search/"+search;
+    }
 }
