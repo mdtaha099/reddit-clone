@@ -40,6 +40,7 @@ public class SubredditController {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(loggedInUser.getName());
         subreddit.setAuthor(user);
+        subreddit.addUser(user);
         subredditService.save(subreddit);
         return "redirect:r/"+subreddit.getName();
     }
