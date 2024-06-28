@@ -1,20 +1,99 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit</title>
+    <link rel="stylesheet" type="text/css" href="/search.css">
 </head>
 <body>
-    <h3>Subreddits</h3>
-    <div th:each="i : ${subreddits}">
-        <p th:text="${i.name}"></p>
-    </div>
-    <h3>posts/comments</h3>
-    <div th:each="i : ${posts}">
+
+<header>
+    <a class="logo" th:href="@{/}">Reddit</a>
+
+    <form class="search-form" th:action="@{'/r/'+${name}+'/search'}">
+        <input type="text" placeholder="Search" name="search">
+        <input type="submit" value="Search">
+    </form>
+    <nav sec:authorize="!isAuthenticated()">
+        <a class="buttons" th:href="@{/login}"><button>Log In</button></a>
+        <a class="buttons" th:href="@{/signup}"><button>Sign Up</button></a>
+    </nav>
+    <nav sec:authorize="isAuthenticated()">
+        <a th:href="@{/profile}"><label class="currentUser" >Hi <span sec:authentication="name"></span></label></a>
+
+        <a class="buttons" th:href="@{/logout}"><button>Log Out</button></a>
+
+    </nav>
+</header>
+<hr class="divider">
+<label style="font-weight: 400; font-size: 25px">Search results</label>
+<hr>
+
+<div class="wrapper">
+    <div class="left-div">
+        <label style="font-size: 20px;
+        text-decoration: underline;
+        font-weight: 500;
+        margin-bottom: 10px"
+        >Subreddits:
+        </label>
+
         <ul>
-            <a th:href="@{'/posts/'+${i.id}}"><p th:text="${i.title}"></p></a>
-            <p th:text="${i.content}"></p>
+            <li class="li-sub" th:each="subreddit : ${subreddits}" >
+                <a th:href="@{/r/{name}(name=${subreddit.name})}" th:text="${subreddit.name}"></a>
+            </li>
         </ul>
     </div>
+    <div class="center-div">
+        <label style="font-size: 20px;
+        text-decoration: underline;
+        font-weight: 500"
+        >
+            Posts:
+        </label>
+
+        <div th:each="post: ${posts}">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="card1">
+                        <label style="font-weight: 600; color: #02558f">
+                            r/<a style="font-weight: 600; color: #02558f"
+                                 th:href="@{/r/{name}(name=${post.subreddit.name})}"
+                                 th:text="${post.getSubreddit().name}">
+                        </a>
+                        </label>
+                        <label>•</label>
+                        <span
+                                th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
+                        </span>
+                    </div>
+
+                    <a th:href="@{/posts/{postId}(postId=${post.id})}">
+                        <span class="card-title" th:text="${post.title}"></span>
+                    </a>
+                    <p style="font-size: 14.5px; font-weight: 400" th:text="${post.content}"></p>
+
+                    <div class="card1">
+                        <div class="about-post">
+                            <span th:text="${post.upvotes}"></span>
+                            <span>⇅</span>
+                            <span th:text="${post.downvotes}"></span>
+
+                            <span>•</span>
+                            <a style="font-weight: 500; color:black;" th:href="@{/posts/{postId}(postId=${post.id})}">
+                                <span th:text="${post.children.size()}"></span>
+                                <span>comments</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

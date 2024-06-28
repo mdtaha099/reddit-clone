@@ -11,17 +11,14 @@
 <header>
     <a class="logo" th:href="@{/}">Reddit</a>
 
-    <form class="search-form">
-        <input type="text" placeholder="Search">
+    <form class="search-form" th:action="@{'/r/'+${name}+'/search'}">
+        <input type="text" placeholder="Search" name="search">
         <input type="submit" value="Search">
     </form>
     <nav sec:authorize="!isAuthenticated()">
         <a class="buttons" th:href="@{/login}"><button>Log In</button></a>
         <a class="buttons" th:href="@{/signup}"><button>Sign Up</button></a>
     </nav>
-<!--    <nav sec:authorize="isAuthenticated()">-->
-<!--        <a class="buttons" th:href="@{/logout}"><button>Log Out</button></a>-->
-<!--    </nav>-->
     <nav sec:authorize="isAuthenticated()">
         <a th:href="@{/profile}"><label class="currentUser" >Hi <span sec:authentication="name"></span></label></a>
 
@@ -29,19 +26,9 @@
 
     </nav>
 </header>
+
 <div>
-
-<!--    <div class="container-fluid bg-light py-3">-->
-<!--        <a th:href="@{/newSubreddit}">create new subreddit</a>-->
-<!--        <a th:href="@{'/r/'+${name}+ '/join'}">Join</a>-->
-
-<!--        <div sec:authorize="hasRole('USER')">-->
-<!--            <form class="mb-2" th:action="@{/posts/newPost}">-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<hr class="divider">
+    <hr class="divider">
 
 
     <div class="add-join">
@@ -53,7 +40,7 @@
             </form>
 
             <a th:href="@{/newSubreddit}"><button class="btn-form">Create new Subreddit</button></a>
-            <a  th:href="@{'/r/'+${name}+ '/join'}"><button class="btn-form">Join</button></a>
+            <a  th:href="@{'/r/'+${name}+ '/join'}"><button class="btn-join">Join</button></a>
         </div>
 
     </div>
@@ -74,7 +61,7 @@
         <div class="card">
             <div class="card-body">
                 <a th:href="@{/posts/{postId}(postId=${post.id})}">
-                    <label class="card-title" th:text="${post.title}"></label>
+                    <span class="card-title" th:text="${post.title}"></span>
                 </a>
 
                 <div class="card1">
@@ -82,18 +69,26 @@
                     <span
                             th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
                     </span>
+
                     <label>by</label>
-                    <label th:text="${post.getUser().username}"></label>
+
+                    <label style="font-weight: 500; color: #000000" th:text="${post.user.username}"></label>
+
                     <label>to</label>
-                    <label>r/</label>
-                    <label th:text="${post.getSubreddit().name}"></label>
+
+                    <label style="font-weight: 600; color: #02558f">
+                        r/<a style="font-weight: 600; color: #02558f"
+                             th:href="@{/r/{name}(name=${post.subreddit.name})}"
+                             th:text="${post.getSubreddit().name}">
+                    </a>
+                    </label>
 
                     <div class="about-post">
                         <span th:text="${post.upvotes}"></span>
                         <span>⇅</span>
                         <span th:text="${post.downvotes}"></span>
 
-                        <span>·</span>
+                        <span>•</span>
                         <a style="font-weight: 500" th:href="@{/posts/{postId}(postId=${post.id})}">
                             <span th:text="${post.children.size()}"></span>
                             <span>comments</span>
@@ -101,16 +96,13 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
     </div>
-<!--    <a th:if="${currentPage > 0}" th:href="@{${url}(page = ${currentPage - 1})}">prev</a>-->
-<!--    <a th:if="${currentPage < totalPages - 1}"  th:href="@{${url}(page=${currentPage + 1})}">next</a>-->
-    <div th:with="url=${url}">
-        <a th:if="${currentPage > 0}" th:href="@{${url}(page=${currentPage - 1})}">prev</a>
-        <a th:if="${currentPage < totalPages - 1}" th:href="@{${url}(page=${currentPage + 1})}">next</a>
-    </div>
+        <div th:with="url=${url}">
+            <a th:if="${currentPage > 0}" th:href="@{${url}(page=${currentPage - 1})}">prev</a>
+            <a th:if="${currentPage < totalPages - 1}" th:href="@{${url}(page=${currentPage + 1})}">next</a>
+        </div>
 </div>
 
 </body>
