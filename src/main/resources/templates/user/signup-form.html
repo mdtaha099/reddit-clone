@@ -15,7 +15,7 @@
 <!--</html>-->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,6 +90,7 @@
 </head>
 <body>
 <div class="div_form">
+    <a th:href="@{/generateUserName}">generate-cool-usernames</a>
     <label class="lbl">Create an account</label>
     <form th:object="${user}" th:action="@{/signup}" method="POST">
         <input type="text" name="username" placeholder="Username" required>

@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserRepository extends JpaRepository<User,Integer> {
     User findByUsername(String username);
     User findByEmail(String email);
     @Query("SELECT p FROM Post p WHERE p.user.id = :userId")
     List<Post> findAllPostsByUserId(int userId);
+    @Query("select username from User")
+    Set<String> findAllUsernames();
 }

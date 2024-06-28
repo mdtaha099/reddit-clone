@@ -7,6 +7,7 @@ import io.mountblue.reddit_clone.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -36,5 +37,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<Post> findAllPostsByUserId(int userId) {
         return userRepository.findAllPostsByUserId(userId);
+    }
+
+    @Override
+    public Set<String> findAllUsernames() {
+        return userRepository.findAllUsernames();
     }
 }
