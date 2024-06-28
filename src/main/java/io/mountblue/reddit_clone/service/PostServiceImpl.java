@@ -87,12 +87,12 @@ public class PostServiceImpl implements PostService {
     @Override
     public Page<Post> findLatestPosts(int page) {
         Pageable pageable = PageRequest.of(page,10);
-        return postRepository.findAllByOrderByCreatedAtDesc(pageable);
+        return postRepository.findAllByIsPostTrueOrderByCreatedAtDesc(pageable);
     }
 
     @Override
     public Page<Post> findTopPosts(int page) {
         Pageable pageable = PageRequest.of(page,10);
-        return postRepository.findAllByOrderByUpvotesDesc(pageable);
+        return postRepository.findAllByIsPostTrueOrderByUpvotesDesc(pageable);
     }
 }

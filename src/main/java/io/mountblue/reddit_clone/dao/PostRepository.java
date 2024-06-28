@@ -47,7 +47,8 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     Page<Post> findAllPostsForUserOrderedByUpvotes(@Param("userId") int userId, Pageable pageable);
 
 
-    Page<Post> findAllByOrderByCreatedAtDesc(Pageable pageable);
 
-    Page<Post> findAllByOrderByUpvotesDesc(Pageable pageable);
+    Page<Post> findAllByIsPostTrueOrderByCreatedAtDesc(Pageable pageable);
+
+    Page<Post> findAllByIsPostTrueOrderByUpvotesDesc(Pageable pageable);
 }
