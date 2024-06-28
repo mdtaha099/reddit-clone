@@ -1,3 +1,166 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');*/
+
+/*body{*/
+/*    font-family: 'Poppins', sans-serif;*/
+/*    background-color: #ffffff;*/
+/*    margin: 0 8px;*/
+/*}*/
+
+/**{*/
+/*    box-sizing: border-box;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+/*a{*/
+/*    font-family: "Poppins", sans-serif;*/
+/*    font-weight: normal;*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*header{*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    padding: 5px 0;*/
+/*    background-color: #ffffff;*/
+/*}*/
+
+/*button, input[type="submit"] {*/
+/*    background-color: #ffffff;*/
+/*    margin-left: 5px;*/
+/*    color: #FF5700;*/
+/*    border: 1px solid #FF5700;*/
+/*    padding: 8px 20px;*/
+/*    border-radius: 50px 50px;*/
+/*    cursor: pointer;*/
+/*    font-size: 14px;*/
+/*    transition: background-color 0.3s ease;*/
+/*}*/
+
+/*button:hover, input[type="submit"]:hover {*/
+/*    background-color: #FF4500;*/
+/*    color: #ffffff;*/
+/*}*/
+
+
+/*.btn-small {*/
+/*    width: 50px;*/
+/*    height: 25px;*/
+/*    padding: 0;*/
+/*    background-color: #FF5700;*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*    transition: all 0.3s ease 0s;*/
+/*    color: white;*/
+
+/*}*/
+
+/*.btn-small:hover {*/
+/*    background-color: #FF4500;*/
+/*}*/
+
+
+/*.logo{*/
+/*    font-size: 30px;*/
+/*    color: #FF5700;*/
+/*}*/
+
+/*.sort{*/
+/*    margin: 5px 0;*/
+/*}*/
+
+/*.card {*/
+/*    align-self: center;*/
+/*    border: none;*/
+/*    border-radius: 3px;*/
+/*    padding-left: 5px;*/
+/*    transition: transform 0.3s ease;*/
+/*    margin: 3px 0; !* Add space between cards *!*/
+/*    background-color: #ffffff;*/
+/*}*/
+
+/*.card:hover {*/
+/*    background-color: rgba(202, 203, 209, 0.38);*/
+/*    !*transform: translateY(-3px);*!*/
+/*    !*box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);*!*/
+/*}*/
+
+/*.card-title {*/
+/*    font-size: large;*/
+/*    color: #0079d3; !* Reddit blue *!*/
+/*}*/
+
+/*.card1{*/
+/*    font-size: small;*/
+/*    font-weight: normal;*/
+/*    color: #221f1f;*/
+/*}*/
+
+/*hr {*/
+/*    border: none; !* Remove default border *!*/
+/*    height: 1px; !* Set the height of the line *!*/
+/*    background-color: #ccc; !* Set the color to grey *!*/
+/*}*/
+
+/*.divider {*/
+/*    border: none ; !* Remove default border *!*/
+/*    height: 1px; !* Set the height of the line *!*/
+/*    background-color: rgba(0, 0, 0, 0.7); !* Set the color to grey *!*/
+/*}*/
+
+/*.sub-name{*/
+/*    margin-right: auto;*/
+
+/*    font-size: 20px;*/
+/*    font-weight: 700;*/
+/*    border-radius: 8px;*/
+
+/*    color: #a53903;*/
+/*}*/
+
+/*.add-join{*/
+/*    justify-content: right;*/
+/*    margin-top: 2px;*/
+/*    margin-left: auto;*/
+/*    display: flex;*/
+/*}*/
+
+/*.currentUser{*/
+/*    text-decoration: none;*/
+/*    font-family: "Poppins", sans-serif;*/
+/*    font-size: large;*/
+/*    color: #0079d3;*/
+/*    transition: background-color 0.8s ease;*/
+/*}*/
+/*.currentUser:hover{*/
+/*    color: #FF5700;*/
+/*    text-decoration: overline;*/
+/*}*/
+
+/*.search-form {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    padding: 10px;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/*.search-form input[type="text"] {*/
+/*    padding: 8px;*/
+/*    border: 1px solid #FF5700;*/
+/*    border-radius: 50px 50px;*/
+/*    font-size: 14px;*/
+/*    width: 400px; !* Adjust width as needed *!*/
+/*}*/
+/*.search-form input[type="text"]:focus {*/
+/*    border: 1px solid #FF5700;*/
+/*}*/
+
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body{
@@ -28,19 +191,20 @@ header{
     background-color: #ffffff;
 }
 
-button, input[type="submit"] {
+button {
+    font-family: "Poppins", sans-serif;
+    font-weight: normal;
+    padding: 9px 25px;
     background-color: #ffffff;
-    margin-left: 5px;
-    color: #FF5700;
     border: 1px solid #FF5700;
-    padding: 8px 20px;
-    border-radius: 50px 50px;
+    border-radius: 50px;
     cursor: pointer;
+    transition: all 0.3s ease 0s;
+    color: #FF5700;
     font-size: 14px;
-    transition: background-color 0.3s ease;
 }
 
-button:hover, input[type="submit"]:hover {
+button:hover {
     background-color: #FF4500;
     color: #ffffff;
 }
@@ -48,7 +212,7 @@ button:hover, input[type="submit"]:hover {
 
 .btn-small {
     width: 50px;
-    height: 25px;
+    height: 30px;
     padding: 0;
     background-color: #FF5700;
     border: none;
@@ -70,7 +234,7 @@ button:hover, input[type="submit"]:hover {
 }
 
 .sort{
-    margin: 5px 0;
+    margin: 5px;
 }
 
 .card {
@@ -112,33 +276,21 @@ hr {
     background-color: rgba(0, 0, 0, 0.7); /* Set the color to grey */
 }
 
-.sub-name{
-    margin-right: auto;
-
-    font-size: 20px;
-    font-weight: 700;
-    border-radius: 8px;
-
-    color: #a53903;
-}
 
 .add-join{
-    justify-content: right;
-    margin-top: 2px;
-    margin-left: auto;
+    margin: 5px;
     display: flex;
 }
 
 .currentUser{
-    text-decoration: none;
+    text-decoration: underline;
     font-family: "Poppins", sans-serif;
     font-size: large;
     color: #0079d3;
-    transition: background-color 0.8s ease;
+    transition: background-color 0.3s ease;
 }
 .currentUser:hover{
-    color: #FF5700;
-    text-decoration: overline;
+    color: #00477a;
 }
 
 .search-form {
@@ -159,3 +311,21 @@ hr {
 .search-form input[type="text"]:focus {
     border: 1px solid #FF5700;
 }
+
+.join-form input[type="submit"], .search-form input[type="submit"] {
+    background-color: #ffffff;
+    margin-left: 5px;
+    color: #FF5700;
+    border: 1px solid #FF5700;
+    padding: 8px 20px;
+    border-radius: 50px 50px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.join-form input[type="submit"]:hover, .search-form input[type="submit"]:hover {
+    color: #ffffff;
+    background-color: #FF5700;}
+
+
