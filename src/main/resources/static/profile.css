@@ -126,9 +126,7 @@ a{
     padding: 20px; /* Adjust padding as needed */
     width: 25%;
     height: 100vh;
-
     box-sizing: border-box; /* Include padding and border in the width */
-
 }
 
 .username{

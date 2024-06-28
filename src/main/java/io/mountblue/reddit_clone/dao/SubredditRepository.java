@@ -39,4 +39,6 @@ public interface SubredditRepository extends JpaRepository<Subreddit,Integer> {
     List<Post> findAllPostBySubredditContaining(int id,String content,String title);
 
     List<Subreddit> findAllByNameContaining(String search);
+
+    Page<Subreddit> findAll(Pageable pageable);
 }

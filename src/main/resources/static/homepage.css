@@ -2,8 +2,9 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
+    background-color: #0E1113;
     margin: 0 8px;
+    color: #6c6c6c;
 }
 
 *{
@@ -16,7 +17,6 @@ a{
     font-family: "Poppins", sans-serif;
     font-weight: normal;
     text-decoration: none;
-    color: black;
     cursor: pointer;
 }
 
@@ -24,8 +24,8 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 0;
-    background-color: #ffffff;
+    padding: 3px 0;
+    background-color: #0E1113;
 }
 
 button, input[type="submit"] {
@@ -50,7 +50,7 @@ button:hover, input[type="submit"]:hover {
     width: 50px;
     height: 25px;
     padding: 0;
-    background-color: #FF5700;
+    background-color: gray;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -60,7 +60,7 @@ button:hover, input[type="submit"]:hover {
 }
 
 .btn-small:hover {
-    background-color: #FF4500;
+    background-color: #656565;
 }
 
 
@@ -70,6 +70,8 @@ button:hover, input[type="submit"]:hover {
 }
 
 .sort{
+    align-self: flex-start;
+    display: flex;
     margin: 5px 0;
 }
 
@@ -109,7 +111,7 @@ hr {
 .divider {
     border: none ; /* Remove default border */
     height: 1px; /* Set the height of the line */
-    background-color: rgba(0, 0, 0, 0.7); /* Set the color to grey */
+    background-color: rgba(158, 158, 158, 0.8); /* Set the color to grey */
 }
 
 .sub-name{
@@ -150,14 +152,22 @@ hr {
 }
 
 .search-form input[type="text"] {
-    padding: 8px;
-    border: 1px solid #FF5700;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 8px 18px;
+    border: 1px solid #333D42;
     border-radius: 50px 50px;
-    font-size: 14px;
-    width: 400px; /* Adjust width as needed */
+    height: 40px;
+    width: 550px; /* Adjust width as needed */
+    background-color: #333D42;
+    font-weight: 200;
+    font-size: medium;
+    color: #d5d5d5;
 }
-.search-form input[type="text"]:focus {
-    border: 1px solid #FF5700;
+
+.search-form input[type="text"]:hover {
+    background-color: #394145;
+    border: 1px solid #333D42;
 }
 
 .btn-join{
@@ -168,4 +178,65 @@ hr {
 .btn-join:hover{
     background-color: #0079d3;
     color: white;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: flex-start; /* Align items at the top vertically */
+    margin-top: -1px; /* Adjust margin as needed */
+}
+
+.center-div {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px; /* Adjust padding as needed */
+
+    box-sizing: border-box; /* Include padding and border in the width */
+    width: 60%;
+    /*margin-left: 22%;*/
+}
+
+.right-div {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid rgba(129, 129, 129, 0.38);
+    padding: 20px; /* Adjust padding as needed */
+    width: 25%;
+    height: 100vh;
+
+    box-sizing: border-box; /* Include padding and border in the width */
+    margin-left: -1px; /* Add space between center-div and right-div */
+}
+
+.left-div {
+    display: flex;
+    flex-direction: column;
+
+    margin-right: -1px;
+    padding: 20px; /* Adjust padding as needed */
+    width: 25%;
+    height: 100vh;
+    box-sizing: border-box; /* Include padding and border in the width */
+    border: 1px solid rgba(129, 129, 129, 0.38);
+}
+
+.popular-tags{
+    display: flex;
+    flex-direction: column;
+    margin-right: -1px;
+    padding: 15px 15px; /* Adjust padding as needed */
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    background-color: black;
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.subreddit{
+    color: #c8dbe6;
+    margin-top: 5px;
+    font-size: 14px;
+
 }

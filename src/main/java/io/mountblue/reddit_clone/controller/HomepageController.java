@@ -50,6 +50,7 @@ public class HomepageController {
             model.addAttribute("totalPages",posts.getTotalPages());
             model.addAttribute("posts", posts);
         }
+        model.addAttribute("subreddits", subredditService.findAll());
         return "homepage";
     }
 
@@ -71,6 +72,8 @@ public class HomepageController {
             model.addAttribute("totalPages",posts.getTotalPages());
             model.addAttribute("posts", posts);
         }
+        model.addAttribute("subreddits", subredditService.findAll());
+
         return "homepage";
     }
 }

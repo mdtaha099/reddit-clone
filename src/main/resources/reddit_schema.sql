@@ -35,7 +35,7 @@ CREATE TABLE post (
     is_post BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (parent_id) REFERENCES post(id),
-    FOREIGN KEY (subreddit_id) REFERENCES subreddit(id)
+    FOREIGN KEY (subreddit_id) REFERENCES subreddit(id),
     FOREIGN KEY (image_id) REFERENCES image(id)
 );
 
