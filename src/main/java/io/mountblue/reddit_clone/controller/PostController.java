@@ -90,6 +90,7 @@ public class PostController {
         }
 
         Post comment = new Post();
+        comment.setSubreddit(post.getSubreddit());
         comment.setParent(post);
         comment.setContent(content);
         User user = userService.findByUsername(principal.getName());
