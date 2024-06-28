@@ -10,7 +10,7 @@
 
 <body>
 <header>
-    <a class="logo" th:href="@{/}">Reddit</a>
+    <a class="logo" th:href="@{/}">reddit</a>
     <form class="search-form" th:action="@{/search}" method="get">
         <input type="text" placeholder="Search Reddit" name="search">
     </form>
@@ -33,7 +33,18 @@
 
 
 <div class="wrapper">
-    <div class="left-div"></div>
+    <div class="left-div">
+        <div class="left-tag-div">
+            <a class="left-tag" th:href="@{/}"
+            >🏠Home</a>
+            <a class="left-tag" th:href="@{/byUpvotes}"
+            >➚ Popular</a>
+        </div>
+
+        <hr>
+    </div>
+
+    <hr class="divider">
 
     <div class="center-div">
         <div class="sort">
@@ -51,28 +62,26 @@
         <div th:each="post: ${posts}">
             <div class="card">
                 <div class="card-body">
-                    <a th:href="@{/posts/{postId}(postId=${post.id})}">
-                        <span class="card-title" th:text="${post.title}"></span>
-                    </a>
-
-                    <div class="card1">
-                        <label>submitted on </label>
-                        <span th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
-                        </span>
-
-                        <label>by</label>
-
-                        <label style="font-weight: 500; color: #000000" th:text="${post.user.username}"></label>
-
-                        <label>to</label>
-
+                    <div class="about-post">
                         <label style="font-weight: 600; color: #02558f">
                             r/<a style="font-weight: 600; color: #02558f"
                                  th:href="@{/r/{name}(name=${post.subreddit.name})}"
                                  th:text="${post.getSubreddit().name}">
                         </a>
                         </label>
+                        <span>•</span>
+                        <span th:text="${#temporals.format(post.updatedAt, 'dd MMM yyyy')}">
+                        </span>
+                    </div>
+                    <a th:href="@{/posts/{postId}(postId=${post.id})}">
+                        <span class="card-title" th:text="${post.title}"></span>
+                    </a>
 
+                    <div class="card1">
+                        <div class="image" th:if="${post.image}">
+                            <img th:src="@{'/image/' + ${post.image.id}}">
+                        </div>
+                        <label th:text="${post.content}"></label>
                         <div class="about-post">
                             <span th:text="${post.upvotes}"></span>
                             <span>⇅</span>
@@ -94,12 +103,12 @@
     <div class="right-div">
         <div class="popular-tags">
                 <span style="font-size: small;
-                color: #c8dbe6; font-weight: 400;
+                color: #2a2f30; font-weight: 400;
                 margin-bottom: 5px;"
                 >POPULAR COMMUNITIES</span>
             <div th:each="subs : ${subreddits}" class="subreddit">
                 <a th:href="@{/r/{name}(name=${subs.name})}">
-                    <label style="color: #c8dbe6;font-weight: 200;">
+                    <label style="color: #2a2f30;font-weight: 300;">
                         • r/<label th:text="${subs.name}"></label>
                     </label>
                 </a>
