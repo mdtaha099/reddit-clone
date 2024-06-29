@@ -116,9 +116,11 @@ public class SubredditController {
         Subreddit subreddit = subredditService.findByName(name);
         List<Post> posts = subredditService.findAllPostBySubredditContaining(subreddit.getId(),search,search);
         List<Subreddit> subreddits = subredditService.findAllByNameContaining(search);
-        model.addAttribute("subreddits",subreddits);
+        //model.addAttribute("subreddits",subreddits);
         model.addAttribute("posts",posts);
-        return "search/search";
+        url = "/r/"+name+"/search";
+        model.addAttribute("url",url);
+        return "search/subreddit-search";
     }
     @GetMapping("/search/{search}")
     public String searchAll(@PathVariable String search,Model model) {
@@ -136,7 +138,9 @@ public class SubredditController {
 
     @GetMapping("/r/{sub}/search")
     public String searchSubreddit(@PathVariable String sub,
-                                  @RequestParam("search") String search) {
+                                  @RequestParam("search") String search,Model model) {
+        url = "/r/"+sub+"/search";
+        model.addAttribute("url",url);
         return "redirect:/r/" + sub + "/search/"+search;
     }
 }
