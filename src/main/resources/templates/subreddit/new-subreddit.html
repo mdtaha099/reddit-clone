@@ -33,10 +33,29 @@
 <hr class="divider">
 
 <br>
-<form class="search-form" th:action="@{/newSubreddit}" th:object="${subreddit}" method="POST">
-    <input style="border: 1px solid gray" type="text" name="name" placeholder="Subreddit name"/>
-    <input type="submit" value="create-new-subreddit"/>
-</form>
+<div class="new-sub">
+    <form class="search-form" th:action="@{/newSubreddit}" th:object="${subreddit}" method="POST">
+        <input style="border: 1px solid gray" type="text" name="name" placeholder="Subreddit name"/>
+        <input type="submit" value="create-new-subreddit"/>
+    </form>
+</div>
+
+<div class="all-subs">
+    <span style="margin-bottom: 30px; font-size: 25px; text-decoration: underline">Subreddits</span>
+    <div class="subs">
+        <a th:each="subs: ${subreddits}" th:href="@{/r/{name}(name=${subs.name})}"
+        style="margin: 8px;">
+            <span>
+               • r/<span th:text="${subs.name}"></span>
+            </span>
+
+        </a>
+
+
+
+    </div>
+
+</div>
 
 
 </body>

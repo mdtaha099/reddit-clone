@@ -230,7 +230,6 @@ hr {
     padding: 20px;
     width: 25%;
     height: 100vh;
-
     box-sizing: border-box;
     margin-left: -1px;
 }
@@ -238,7 +237,6 @@ hr {
 .left-div {
     display: flex;
     flex-direction: column;
-
     margin-right: -1px;
     padding: 20px 15px; /* Adjust padding as needed */
     width: 22%;
@@ -291,4 +289,25 @@ img{
 .about-post{
     font-size: small;
     color: #4e4e4e;
+}
+
+.new-sub{
+    margin-bottom: 80px;
+    margin-top: 50px;
+}
+
+.all-subs{
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    background-color: #e6e6e6;
+    color: #2a2f30;
+}
+
+.subs{
+    width: 95%;
+    height: 95%;
+    display: inline;
 }
