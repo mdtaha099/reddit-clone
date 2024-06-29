@@ -10,7 +10,7 @@
 <body>
 <header>
     <a class="logo" th:href="@{/}">reddit</a>
-    <form class="search-form" th:action="@{/search}" method="get">
+    <form class="search-form" th:action="@{'/r/'+${name}+'/search'}" method="get">
         <input type="text" placeholder="Search Reddit" name="search">
     </form>
     <nav sec:authorize="!isAuthenticated()">
