@@ -56,4 +56,10 @@ public class SubredditServiceImpl implements SubredditService{
     public List<Subreddit> findAllByNameContaining(String search) {
         return subredditRepository.findAllByNameContaining(search);
     }
+
+    @Override
+    public List<Subreddit> findAll() {
+        Pageable pageable = PageRequest.of(0, 10);
+        return subredditRepository.findAll(pageable).getContent();
+    }
 }

@@ -32,7 +32,9 @@ public class SubredditController {
     @GetMapping("/newSubreddit")
     public String newSubreddit(Model model) {
         Subreddit subreddit = new Subreddit();
+        List<Subreddit> subreddits = subredditService.findAll();
         model.addAttribute("subreddit",subreddit);
+        model.addAttribute("subreddits", subreddits);
         return "subreddit/new-subreddit";
     }
     @PostMapping("/newSubreddit")

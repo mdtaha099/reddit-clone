@@ -10,26 +10,52 @@
 <body>
 
 <header>
-    <a class="logo" th:href="@{/}">Reddit</a>
-
+    <a class="logo" th:href="@{/}">reddit</a>
     <form class="search-form" th:action="@{/search}" method="get">
-        <input type="text" placeholder="Search" name="search">
-        <input type="submit" value="Search">
+        <input type="text" placeholder="Search Reddit" name="search">
     </form>
-
-    <nav>
-        <a th:href="@{/profile}"><label class="currentUser" >Hi <span sec:authentication="name"></span></label></a>
-        <a class="buttons" th:href="@{/logout}"><button>Log Out</button></a>
+    <nav sec:authorize="!isAuthenticated()">
+        <a class="buttons" th:href="@{/login}">
+            <button>Log In</button>
+        </a>
+        <a class="buttons" th:href="@{/signup}">
+            <button>Sign Up</button>
+        </a>
+    </nav>
+    <nav sec:authorize="isAuthenticated()">
+        <a th:href="@{/profile}"><label class="currentUser">Hi <span sec:authentication="name"></span></label></a>
+        <a class="buttons" th:href="@{/logout}">
+            <button>Log Out</button>
+        </a>
     </nav>
 </header>
 
 <hr class="divider">
 
+<br>
+<div class="new-sub">
+    <form class="search-form" th:action="@{/newSubreddit}" th:object="${subreddit}" method="POST">
+        <input style="border: 1px solid gray" type="text" name="name" placeholder="Subreddit name"/>
+        <input type="submit" value="create-new-subreddit"/>
+    </form>
+</div>
 
-<form class="search-form" th:action="@{/newSubreddit}" th:object="${subreddit}" method="POST">
-    <input type="text" name="name" placeholder="Subreddit name"/>
-    <input type="submit" value="create-new-subreddit"/>
-</form>
+<div class="all-subs">
+    <span style="margin-bottom: 30px; font-size: 25px; text-decoration: underline">Subreddits</span>
+    <div class="subs">
+        <a th:each="subs: ${subreddits}" th:href="@{/r/{name}(name=${subs.name})}"
+        style="margin: 8px;">
+            <span>
+               • r/<span th:text="${subs.name}"></span>
+            </span>
+
+        </a>
+
+
+
+    </div>
+
+</div>
 
 
 </body>

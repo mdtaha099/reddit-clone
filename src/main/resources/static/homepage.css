@@ -3,7 +3,8 @@
 body{
     font-family: 'Poppins', sans-serif;
     background-color: #ffffff;
-    margin: 0 8px;
+    margin: 0 15px;
+    color: #2a2f30;
 }
 
 *{
@@ -16,117 +17,17 @@ a{
     font-family: "Poppins", sans-serif;
     font-weight: normal;
     text-decoration: none;
-    color: black;
     cursor: pointer;
+    color: #4e4e4e;
 }
 
 header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 0;
-    background-color: #ffffff;
-}
-
-button, input[type="submit"] {
-    background-color: #ffffff;
-    margin-left: 5px;
-    color: #FF5700;
-    border: 1px solid #FF5700;
-    padding: 8px 20px;
-    border-radius: 50px 50px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover, input[type="submit"]:hover {
-    background-color: #FF4500;
-    color: #ffffff;
-}
-
-
-.btn-small {
-    width: 50px;
-    height: 25px;
     padding: 0;
-    background-color: #FF5700;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-    color: white;
-
-}
-
-.btn-small:hover {
-    background-color: #FF4500;
-}
-
-
-.logo{
-    font-size: 30px;
-    color: #FF5700;
-}
-
-.sort{
-    margin: 5px 0;
-}
-
-.card {
-    align-self: center;
-    border: none;
-    border-radius: 3px;
-    padding-left: 5px;
-    transition: transform 0.3s ease;
-    margin: 3px 0; /* Add space between cards */
+    height: 55px;
     background-color: #ffffff;
-}
-
-.card:hover {
-    background-color: rgba(202, 203, 209, 0.38);
-    /*transform: translateY(-3px);*/
-    /*box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);*/
-}
-
-.card-title {
-    font-size: large;
-    color: #0079d3; /* Reddit blue */
-}
-
-.card1{
-    font-size: small;
-    font-weight: normal;
-    color: #221f1f;
-}
-
-hr {
-    border: none; /* Remove default border */
-    height: 1px; /* Set the height of the line */
-    background-color: #ccc; /* Set the color to grey */
-}
-
-.divider {
-    border: none ; /* Remove default border */
-    height: 1px; /* Set the height of the line */
-    background-color: rgba(0, 0, 0, 0.7); /* Set the color to grey */
-}
-
-.sub-name{
-    margin-right: auto;
-
-    font-size: 20px;
-    font-weight: 700;
-    border-radius: 8px;
-
-    color: #a53903;
-}
-
-.add-join{
-    justify-content: right;
-    margin-top: 2px;
-    margin-left: auto;
-    display: flex;
 }
 
 .currentUser{
@@ -145,20 +46,156 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    /*padding: 10px;*/
     border-radius: 5px;
 }
 
 .search-form input[type="text"] {
-    padding: 8px;
-    border: 1px solid #FF5700;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 8px 18px;
+    border: 1px solid #f6f8f9;
     border-radius: 50px 50px;
-    font-size: 14px;
-    width: 400px; /* Adjust width as needed */
+    height: 40px;
+    width: 550px; /* Adjust width as needed */
+    background-color: #f6f8f9;
+    font-weight: 200;
+    font-size: medium;
+    color: #2a2f30;
 }
-.search-form input[type="text"]:focus {
+
+.search-form input[type="text"]:hover {
+    background-color: #dbe4e9;
+    border: 1px solid #dbe4e9;
+}
+
+
+button, input[type="submit"] {
+    background-color: #ffffff;
+    margin-left: 5px;
+    color: #FF5700;
     border: 1px solid #FF5700;
+    padding: 8px 20px;
+    border-radius: 50px 50px;
+    cursor: pointer;
+    font-size: medium;
+    transition: background-color 0.3s ease;
 }
+
+button:hover, input[type="submit"]:hover {
+    background-color: #FF4500;
+    color: #ffffff;
+}
+
+
+.btn-small {
+    width: 50px;
+    height: 25px;
+    padding: 0;
+    background-color: gray;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    color: white;
+
+}
+
+.btn-small:hover {
+    background-color: #656565;
+    color: white;
+}
+
+
+.logo{
+    font-size: 27px;
+    font-weight: 600;
+    color: #FF5700;
+}
+
+.sort{
+    align-self: flex-start;
+    display: flex;
+    margin: 5px 0;
+}
+
+.card {
+    align-self: center;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: transform 0.3s ease;
+    margin: 10px 0;
+    /*background-color: #ffffff;*/
+}
+
+.card:hover {
+    background-color: #e6e6e6;
+}
+
+.card-title {
+    font-size: larger;
+    color: #001320; /* Reddit blue */
+}
+
+.card1{
+    font-size: small;
+    font-weight: normal;
+    color: #221f1f;
+}
+
+.card-content{
+    font-size: medium;
+    font-weight: normal;
+    color: #221f1f;
+    margin-bottom: 3px;
+}
+
+hr {
+    border: none; /* Remove default border */
+    height: 1px; /* Set the height of the line */
+    background-color: #ccc; /* Set the color to grey */
+}
+
+.divider {
+    border: none ; /* Remove default border */
+    height: 1px; /* Set the height of the line */
+    background-color: rgba(158, 158, 158, 0.8); /* Set the color to grey */
+}
+
+
+
+.sub-name {
+    font-size: 30px;
+    font-weight: 600;
+    border-radius: 8px;
+    color: #2c0d00;
+    margin-right: 10px; /* Optional: Add margin between items */
+}
+
+.add-join1 {
+    align-content: flex-start;
+    margin-top: 2px;
+    margin-left: auto;
+    margin-bottom: 10px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end; /* Align items to the left */
+}
+
+
+/*.add-join1{*/
+/*    border: 1px solid;*/
+/*    align-content: flex-start;*/
+/*    margin-top: 2px;*/
+/*    margin-right: auto;*/
+/*    margin-bottom: 10px;*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*    flex-direction: row;*/
+/*}*/
+
 
 .btn-join{
     background-color: #ffffff;
@@ -168,4 +205,109 @@ hr {
 .btn-join:hover{
     background-color: #0079d3;
     color: white;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: flex-start; /* Align items at the top vertically */
+    margin-top: -1px;
+}
+
+.center-div {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px; /* Adjust padding as needed */
+    border: 1px solid rgba(158, 158, 158, 0.8);
+    box-sizing: border-box; /* Include padding and border in the width */
+    width: 60%;
+    /*margin-left: 22%;*/
+}
+
+.right-div {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 25%;
+    height: 100vh;
+    box-sizing: border-box;
+    margin-left: -1px;
+}
+
+.left-div {
+    display: flex;
+    flex-direction: column;
+    margin-right: -1px;
+    padding: 20px 15px; /* Adjust padding as needed */
+    width: 22%;
+    height: 100vh;
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.popular-tags{
+    display: flex;
+    flex-direction: column;
+    margin-right: -1px;
+    padding: 15px 15px; /* Adjust padding as needed */
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.subreddit{
+    color: #c8dbe6;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+img{
+    border-radius: 10px;
+    max-width: 700px;
+    max-height: 500px;
+}
+.left-tag{
+    padding: 5px;
+    color: #2a2f30;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.left-tag:hover{
+    background-color: #e6e6e6;
+    border-radius: 10px;
+}
+
+.left-tag-div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+}
+
+.about-post{
+    font-size: small;
+    color: #4e4e4e;
+}
+
+.new-sub{
+    margin-bottom: 80px;
+    margin-top: 50px;
+}
+
+.all-subs{
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    background-color: #e6e6e6;
+    color: #2a2f30;
+}
+
+.subs{
+    width: 95%;
+    height: 95%;
+    display: inline;
 }
