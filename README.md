@@ -19,3 +19,9 @@ This project is a web application that mimics the core functionality of Reddit, 
 - **Frontend:** Thymeleaf, HTML, CSS
 - **Database:** MySQL
 - **Hosting:** Amazon AWS
+
+<img width="1440" alt="Screenshot 2025-01-26 at 3 11 48 AM" src="https://github.com/user-attachments/assets/f9c7e171-d304-4c92-b9b0-37722aa29548" />
+<img width="1440" alt="Screenshot 2025-01-26 at 3 11 23 AM" src="https://github.com/user-attachments/assets/bd5346f0-c9d5-4643-bc14-3aae64442e76" />
+
+
+
